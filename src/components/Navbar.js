@@ -1,7 +1,7 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import { useEffect, useState } from "react";
-import LoginButton from "./LoginButton"
-import LogoutButton from "./LogoutButton";
+import LoginButton from "./buttons/LoginButton"
+import LogoutButton from "./buttons/LogoutButton";
 import { Outlet, Link } from "react-router-dom";
 
 function Navbar() {
@@ -66,9 +66,6 @@ function Navbar() {
           <li>
             <Link to="/profile">Profile</Link>
           </li>
-          <li>
-            <Link to="/settings">Settings</Link>
-          </li>
         </span>
         <span id="nav1">
           {isAuthenticated ? (
@@ -82,9 +79,9 @@ function Navbar() {
           )}
 
           <li id="profile">
-            <img src={userPicture} alt="profile" />
             Hi, {userName}!
           </li>
+          <img src={userPicture} alt ="userImage"/>
         </span>
       </ul>
       <Outlet />

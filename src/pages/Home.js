@@ -19,7 +19,6 @@ const Home = () => {
       <div className="body-content">
         <h1>Your FIRST port of call for all things Navbar.</h1>
         <h1>HI</h1>
-        <img src="" alt="Navbarrrr" />
       </div>
       <footer></footer>
     </div>

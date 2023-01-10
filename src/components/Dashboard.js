@@ -48,7 +48,6 @@ const Profile = () => {
     isAuthenticated && (
       <div className="container">
         <div className="profilePicture">
-          <img src={user.picture} alt={user.name} />
         </div>
         <div className="userInfo">
           <h2>{user.name}</h2>

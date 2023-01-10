@@ -1,5 +1,5 @@
 import ProfileInfo from "./pages/ProfileInfo";
-import Navbar from "./Navbar";
+import Navbar from "./components/Navbar";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 
