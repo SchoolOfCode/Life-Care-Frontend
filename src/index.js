@@ -1,21 +1,21 @@
 import React from "react";
-import { createRoot } from "react-dom/client";
-import { BrowserRouter } from "react-router-dom";
-import { App } from "./App";
-import { Auth0ProviderWithNavigate } from "./auth0-provider-with-navigate";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import "./styles/App.css";
+import { Auth0Provider } from "@auth0/auth0-react";
 
-const container = document.getElementById("root");
-const root = createRoot(container);
-
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <Auth0ProviderWithNavigate>
-        <App />
-      </Auth0ProviderWithNavigate>
-    </BrowserRouter>
+    <Auth0Provider
+      domain={process.env.REACT_APP_AUTH0_DOMAIN}
+      clientId={process.env.REACT_APP_AUTH0_CLIENT_ID}
+      onRedirectCallback={process.env.REACT_APP_AUTH0_CALLBACK_URL}
+      redirectUri={window.location.origin}
+    >
+      <App />
+    </Auth0Provider>
   </React.StrictMode>
 );
 
@@ -23,5 +23,3 @@ root.render(
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
-
-
