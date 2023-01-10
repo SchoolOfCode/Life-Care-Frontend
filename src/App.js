@@ -1,27 +1,36 @@
-import "./App.css";
-import Home from "./pages/Home.js";
-import ProfileInfo from "./pages/ProfileInfo.js";
-import { Routes, Route } from "react-router-dom";
-import { Navbar } from "./components/navbar/navbar";
+import { useAuth0 } from "@auth0/auth0-react";
+import React from "react";
+import { Route, Routes } from "react-router-dom";
+import { PageLoader } from "./components/page-loader";
+// import { AdminPage } from "./pages/admin-page";
+import { Callback } from "./pages/Callback";
+import { HomePage } from "./pages/Home";
+// import { NotFoundPage } from "./pages/not-found-page";
+import { Profile } from "./pages/Profile";
+// import { ProtectedPage } from "./pages/protected-page";
+// import { PublicPage } from "./pages/public-page";
 
 export const App = () => {
-  console.log(`
-  SERVER_URL = ${process.env.REACT_APP_API_SERVER_URL} \n 
-  AUTH0_DOMAIN = ${process.env.REACT_APP_AUTH0_DOMAIN} \n 
-  AUTH0_CLIENT_ID = ${process.env.REACT_APP_AUTH0_CLIENT_ID} \n 
-  AUTH0_CALLBACK_URL = ${process.env.REACT_APP_AUTH0_CALLBACK_URL}
-  `);
+	const { isLoading } = useAuth0();
 
-  return (
-    <div>
-      <Navbar />
-      <Routes>
-        <Route index element={<Home />} />
-        {/* /profile should be a protected route!! */}
-        <Route path="/profile" element={<ProfileInfo />} />
-      </Routes>
-    </div>
-  );
+	// possible animation? Just shows between login & callback page
+	if (isLoading) {
+		return (
+			<div className="page-layout">
+				<PageLoader />
+			</div>
+		);
+	}
+
+	return (
+		<Routes>
+			<Route path="/" element={<HomePage />} />
+			<Route path="/profile" element={<Profile />} />
+			{/* <Route path="/public" element={<PublicPage />} />
+			<Route path="/protected" element={<ProtectedPage />} />
+			<Route path="/admin" element={<AdminPage />} /> */}
+			<Route path="/callback" element={<Callback />} />
+			{/* <Route path="*" element={<NotFoundPage />} /> */}
+		</Routes>
+	);
 };
-
-export default App;

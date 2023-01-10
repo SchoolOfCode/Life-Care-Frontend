@@ -1,10 +1,10 @@
 import { Navbar } from "../components/navbar/navbar";
 
-export const HomePage = () => {
+export const Profile = () => {
 	return (
 		<div>
-			<h1>Home</h1>
 			<Navbar />
+			<h1>Profile</h1>
 		</div>
 	);
 };
