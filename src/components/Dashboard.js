@@ -1,6 +1,7 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import { useEffect, useState } from "react";
 import { Outlet, Link } from "react-router-dom";
+import ClientList from "./ClientList";
 
 
 const Dashboard = () => {
@@ -69,6 +70,7 @@ const Dashboard = () => {
           ) : (
             "{navbar-quote: I AM A Navbar}"
           )}
+          <ClientList/>
         </div>
       </div>
     )

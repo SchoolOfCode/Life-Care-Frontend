@@ -1,7 +1,7 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import { useEffect, useState } from "react";
-import LoginButton from "./buttons/LoginButton"
-import LogoutButton from "./buttons/LogoutButton";
+import LoginButton from "../components/buttons/LoginButton"
+import LogoutButton from "../components/buttons/LogoutButton";
 import { Outlet, Link } from "react-router-dom";
 
 
