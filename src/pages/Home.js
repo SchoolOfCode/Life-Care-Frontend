@@ -1,4 +1,5 @@
 import { useAuth0 } from "@auth0/auth0-react";
+import { Outlet, Link } from "react-router-dom";
 // import nav from "../images/nav.jpg"
 
 const Home = () => {
@@ -12,15 +13,19 @@ const Home = () => {
 
   return (
     <div className="App">
-      <header className="App-header"></header>
+          <span id="nav">
+          <li>
+            <Link to="/">Home</Link>
+          </li>
+          <li>
+            <Link to="/dashboard">Dashboard</Link>
+          </li>
+        </span>
+      <header className="App-header">
+      </header>
       <div className="body-content">
-        <h1>Welcome, to Navbar Park.</h1>
+        <h1>Welcome.</h1>
       </div>
-      <div className="body-content">
-        <h1>Your FIRST port of call for all things Navbar.</h1>
-        <h1>HI</h1>
-      </div>
-      <footer></footer>
     </div>
   );
 };

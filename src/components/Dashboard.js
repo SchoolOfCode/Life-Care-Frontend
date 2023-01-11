@@ -1,8 +1,9 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import { useEffect, useState } from "react";
+import { Outlet, Link } from "react-router-dom";
 
 
-const Profile = () => {
+const Dashboard = () => {
   const {
     user,
     isAuthenticated,
@@ -47,6 +48,14 @@ const Profile = () => {
   return (
     isAuthenticated && (
       <div className="container">
+                <span id="nav">
+          <li>
+            <Link to="/">Home</Link>
+          </li>
+          <li>
+            <Link to="/dashboard">Dashboard</Link>
+          </li>
+        </span>
         <div className="profilePicture">
         </div>
         <div className="userInfo">
@@ -66,4 +75,4 @@ const Profile = () => {
   );
 };
 
-export default Profile;
+export default Dashboard;

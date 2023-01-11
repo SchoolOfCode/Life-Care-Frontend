@@ -1,5 +1,5 @@
-import ProfileInfo from "./pages/ProfileInfo";
-import Navbar from "./components/Navbar";
+import Dashboard from "./components/Dashboard";
+import LoginPage from "./components/LoginPage";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 
@@ -7,9 +7,9 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Navbar />}>
+        <Route path="/" element={<LoginPage />}>
           <Route index element={<Home />} />
-          <Route path="profile" element={<ProfileInfo />} />
+          <Route path="dashboard" element={<Dashboard />} />
         </Route>
       </Routes>
     </BrowserRouter>

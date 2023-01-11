@@ -4,7 +4,9 @@ import LoginButton from "./buttons/LoginButton"
 import LogoutButton from "./buttons/LogoutButton";
 import { Outlet, Link } from "react-router-dom";
 
-function Navbar() {
+
+
+function LoginPage() {
   const {
     user,
     isAuthenticated,
@@ -51,22 +53,21 @@ function Navbar() {
 
   isAuthenticated
     ? (userPicture = user.picture)
-    : (userPicture =
-        "https://toppng.com/uploads/preview/red-question-mark-png-11552242986dielb7cmf4.png");
+    : (userPicture = "lifecare-logo.png");
 
   isAuthenticated ? (userName = user.name) : (userName = "Guest");
 
   return (
-    <div className="Navbar">
+    <div className="LoginPage">
       <ul>
-        <span id="nav">
+        {/* <span id="nav">
           <li>
             <Link to="/">Home</Link>
           </li>
           <li>
-            <Link to="/profile">Profile</Link>
+            <Link to="/dashboard">Dashboard</Link>
           </li>
-        </span>
+        </span> */}
         <span id="nav1">
           {isAuthenticated ? (
             <li>
@@ -89,4 +90,4 @@ function Navbar() {
   );
 }
 
-export default Navbar;
+export default LoginPage;
