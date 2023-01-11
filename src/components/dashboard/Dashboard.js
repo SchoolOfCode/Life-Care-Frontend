@@ -1,7 +1,9 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import { useEffect, useState } from "react";
 import { Outlet, Link } from "react-router-dom";
-import ClientList from "./ClientList";
+import ClientList from "../clientList/ClientList";
+import ClientProfile from "../clientProfile/ClientProfile";
+
 
 
 const Dashboard = () => {
@@ -48,28 +50,14 @@ const Dashboard = () => {
 
   return (
     isAuthenticated && (
-      <div className="container">
-                <span id="nav">
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/dashboard">Dashboard</Link>
-          </li>
-        </span>
+      <div className="carer-dashboard">
         <div className="profilePicture">
         </div>
         <div className="userInfo">
           <h2>{user.name}</h2>
           <p>{user.email}</p>
         </div>
-        <div className="metadata">
-          <h3>User Metadata</h3>
-          {userMetadata ? (
-            <pre>{JSON.stringify(userMetadata, null, 2)}</pre>
-          ) : (
-            "{navbar-quote: I AM A Navbar}"
-          )}
+        <div>
           <ClientList/>
         </div>
       </div>
