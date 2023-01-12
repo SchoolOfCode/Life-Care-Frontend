@@ -58,7 +58,7 @@ const Dashboard = () => {
           <p>{user.email}</p>
         </div>
         <div>
-          <ClientList/>
+           <ClientList/>
         </div>
       </div>
     )
