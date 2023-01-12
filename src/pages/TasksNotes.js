@@ -1,13 +1,15 @@
 import React from "react";
-import AddNewNote from "./AddNewNote";
-import SubmitNotes from "./SubmitNotes";
+import AddNewNote from "../components/buttons/AddNewNote";
+import LogoutButton from "../components/buttons/LogoutButton";
+import SubmitNotes from "../components/buttons/SubmitNotes";
 
 export default function TasksNotes() {
 	return (
 		<div>
+			<LogoutButton />
 			<div>
 				<AddNewNote />
-				<h1>Tasks</h1>
+				<h1>ADD NEW NOTE</h1>
 				<p>Brief overview of your visit:</p>
 				<input></input>
 				<p>Incidents / concerns?</p>
@@ -16,12 +18,11 @@ export default function TasksNotes() {
 				<input></input>
 				<SubmitNotes />
 			</div>
-			<h1>PREVIOUS NOTES</h1>
+			<h1>NOTES</h1>
 			<div>
 				<p>Carer:</p>
 				<p>Date:</p>
 				<p>Time:</p>
-				<h1>Tasks</h1>
 				<p>Brief overview of your visit:</p>
 				<div>
 					<p>overview</p>
