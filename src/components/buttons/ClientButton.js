@@ -1,14 +1,18 @@
-import React from 'react'
-import { useNavigate } from 'react-router-dom'
+import React from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function ClientButton() {
-  const navigate = useNavigate()
+	const navigate = useNavigate();
 
-  console.log("Button Clicked");
-  return (
-    <button onClick={()=> {
-        navigate('ClientProfilePage')}
-    }>Client</button>
-    )
-    
-  }
+	console.log("Button Clicked");
+
+	return (
+		<button
+			onClick={() => {
+				navigate("/ClientProfilePage");
+			}}
+		>
+			Client
+		</button>
+	);
+}
