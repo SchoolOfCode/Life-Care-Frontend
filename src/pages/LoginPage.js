@@ -50,22 +50,26 @@ function LoginPage() {
 	isAuthenticated ? (userName = user.name) : (userName = "Guest");
 
 	return (
-		<div className="container">
-			<ul>
-				{isAuthenticated ? (
-					<li>
-						<LogoutButton />
-					</li>
-				) : (
-					<li>
-						<LoginButton />
-					</li>
-				)}
 
-				<li id="profile">Hi, {userName}!</li>
-				<img src={userPicture} alt="userImage" />
-			</ul>
-			<Outlet />
+		<div className="bg">
+			<div className="login_card container col">
+				<div>Logo</div>
+				{/* <h1>Life Care</h1> */}
+				<ul>
+					{isAuthenticated ? (
+						<li>
+							<LogoutButton />
+						</li>
+					) : (
+						<li>
+							<LoginButton />
+						</li>
+					)}
+				</ul>
+					<div >
+					</div>
+				<Outlet />
+			</div>
 		</div>
 	);
 }
