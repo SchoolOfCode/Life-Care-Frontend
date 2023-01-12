@@ -1,5 +1,7 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import { useEffect, useState } from "react";
+import LoginButton from "../components/buttons/LoginButton";
+import LogoutButton from "../components/buttons/LogoutButton";
 // import { Outlet, Link } from "react-router-dom";
 import ClientList from "../components/clientList/ClientList";
 // import ClientProfile from "../components/clientProfile/ClientProfile";
@@ -10,7 +12,7 @@ const Dashboard = () => {
 
 	useEffect(() => {
 		const getUserMetadata = async () => {
-			const domain = process.env.REACT_APP_DOMAIN;
+			const domain = process.env.REACT_APP_AUTH0_DOMAIN;
 
 			try {
 				const accessToken = await getAccessTokenSilently({
@@ -44,6 +46,7 @@ const Dashboard = () => {
 	return (
 		isAuthenticated && (
 			<div className="carer-dashboard">
+			<LogoutButton />
 				<div className="profilePicture"></div>
 				<div className="userInfo">
 					<h2>{user.name}</h2>

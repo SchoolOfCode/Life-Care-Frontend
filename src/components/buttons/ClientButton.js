@@ -9,9 +9,8 @@ export default function ClientButton() {
   
     const handleClick = () => {
       if (!isButtonClicked) {
-        console.log("Button Clicked");
         setIsButtonClicked(true);
-        navigate('/ClientProfilePage')
+        navigate('/client-profile')
       }
     }
     return (
