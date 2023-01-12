@@ -2,7 +2,8 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { useEffect, useState } from "react";
 import LoginButton from "../components/buttons/LoginButton";
 import LogoutButton from "../components/buttons/LogoutButton";
-import { Outlet, Link } from "react-router-dom";
+import { Outlet } from "react-router-dom";
+import '../styles/LoginPage.css'
 
 function LoginPage() {
 	const { user, isAuthenticated, isLoading, getAccessTokenSilently } = useAuth0();
@@ -49,30 +50,20 @@ function LoginPage() {
 	isAuthenticated ? (userName = user.name) : (userName = "Guest");
 
 	return (
-		<div className="LoginPage">
+		<div className="container">
 			<ul>
-				{/* <span id="nav">
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/dashboard">Dashboard</Link>
-          </li>
-        </span> */}
-				<span id="nav1">
-					{isAuthenticated ? (
-						<li>
-							<LogoutButton />
-						</li>
-					) : (
-						<li>
-							<LoginButton />
-						</li>
-					)}
+				{isAuthenticated ? (
+					<li>
+						<LogoutButton />
+					</li>
+				) : (
+					<li>
+						<LoginButton />
+					</li>
+				)}
 
-					<li id="profile">Hi, {userName}!</li>
-					<img src={userPicture} alt="userImage" />
-				</span>
+				<li id="profile">Hi, {userName}!</li>
+				<img src={userPicture} alt="userImage" />
 			</ul>
 			<Outlet />
 		</div>
