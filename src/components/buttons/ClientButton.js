@@ -15,6 +15,6 @@ export default function ClientButton() {
       }
     }
     return (
-      <button onClick={handleClick}>Client</button>
+      <button id="clientButton" onClick={handleClick}>Client</button>
     )
   }
