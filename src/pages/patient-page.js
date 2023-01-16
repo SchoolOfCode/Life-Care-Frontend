@@ -1,7 +1,7 @@
-import { Link, useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { PatientProfile } from "../components/patient-profile";
 import useFetch from "../hooks/useFetch";
-import { Button } from "@chakra-ui/react";
+import { Button, Container } from "@chakra-ui/react";
 
 export const Patient = () => {
   const { id } = useParams();
@@ -9,23 +9,17 @@ export const Patient = () => {
     data: patient,
     isPending,
     error,
-  } = useFetch(`http://localhost:3005/api/patient/${id}`);
+  } = useFetch(`http://localhost:3005/api/patients/${id}`);
 
   const navigate = useNavigate();
 
   const navigateToNotes = () => {
     // 👇️ navigate to /contacts
-    navigate("/patient/:id/notes");
+    navigate(`/patient/${id}/notes`);
   };
 
   return (
-    <div className="patient-details">
-      <h1>Patient Page</h1>
-      <h2>Patient Data:</h2>
-      {/* {error && <div>{error}</div>}
-      {isPending && <div>Loading...</div>}
-      {patient && JSON.stringify(patient)} */}
-      <PatientProfile />
+    <Container className="patient-details">
       <Button
         onClick={navigateToNotes}
         colorScheme="teal"
@@ -34,7 +28,7 @@ export const Patient = () => {
       >
         Tasks & Notes
       </Button>
-      <Link to={"notes"}>Tasks & Notes</Link>
-    </div>
+      <PatientProfile patient={patient} />
+    </Container>
   );
 };

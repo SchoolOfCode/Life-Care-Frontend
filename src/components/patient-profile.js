@@ -1,16 +1,17 @@
 import { useParams } from "react-router-dom";
 import useFetch from "../hooks/useFetch";
-import { Card, CardHeader, CardBody, CardFooter } from "@chakra-ui/react";
-import { Avatar, Wrap, WrapItem } from "@chakra-ui/react";
+import {
+  Avatar,
+  Wrap,
+  WrapItem,
+  Heading,
+  Card,
+  Container,
+} from "@chakra-ui/react";
 
-export const PatientProfile = () => {
-  const { id } = useParams();
-  const { data, isPending, error } = useFetch(
-    `http://localhost:3005/api/patients/${id}`
-  );
-
+export const PatientProfile = (data) => {
   return (
-    <div className="patient-details">
+    <Container className="patient-details">
       <Wrap>
         <WrapItem>
           <Avatar
@@ -20,10 +21,8 @@ export const PatientProfile = () => {
           />
         </WrapItem>
       </Wrap>
-      <h1>Name</h1>
-      {error && <div>{error}</div>}
-      {isPending && <div>Loading...</div>}
-      {data && JSON.stringify(data)}
-    </div>
+      <Heading>{data.patient_name}</Heading>
+      <Card>{data && JSON.stringify(data)}</Card>
+    </Container>
   );
 };
