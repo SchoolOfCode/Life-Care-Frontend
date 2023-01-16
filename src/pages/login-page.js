@@ -1,5 +1,4 @@
 import { LoginButton } from "../components/buttons/login-button";
-import "../styles/Login.css";
 
 export function Login() {
 	return (
