@@ -9,29 +9,29 @@ import { AuthenticationGuard } from "./components/authentication-guard";
 import useFetch from "./hooks/useFetch.js";
 
 export function App() {
-	// const carer_id = 1;
-	let {data} = useFetch(`http://localhost:3005/api/carers/1`);
+  // const carer_id = 1;
+  let { data } = useFetch(`http://localhost:3005/api/carers/1`);
 
-	// console.log(`here:`, data);
+  // console.log(`here:`, data);
 
-	return (
-		<Routes>
-			<Route index element={<Login />} />
-			<Route element={<Layout />}>
-			<Route
-        path="dashboard"
-        element={<AuthenticationGuard component={Dashboard} />}
-      />
-			<Route
-        path="patient/:id"
-        element={<AuthenticationGuard component={Patient} />}
-      />
-			<Route
-        path="patient/:id/notes"
-        element={<AuthenticationGuard component={Notes} />}
-      />
-				<Route path="*" element={<NotFoundPage />} />
-			</Route>
-		</Routes>
-	);
+  return (
+    <Routes>
+      <Route index element={<Login />} />
+      <Route element={<Layout />}>
+        <Route
+          path="dashboard"
+          element={<AuthenticationGuard component={Dashboard} />}
+        />
+        <Route
+          path="patient/:id"
+          element={<AuthenticationGuard component={Patient} />}
+        />
+        <Route
+          path="patient/:id/notes"
+          element={<AuthenticationGuard component={Notes} />}
+        />
+        <Route path="*" element={<NotFoundPage />} />
+      </Route>
+    </Routes>
+  );
 }
