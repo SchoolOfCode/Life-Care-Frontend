@@ -4,7 +4,7 @@ import { createRoot } from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import { Auth0ProviderWithNavigate } from "./auth0-provider-with-navigate";
 import reportWebVitals from "./reportWebVitals";
-import "./styles/App.css";
+import "./styles/index.css";
 import { ChakraProvider } from "@chakra-ui/react";
 
 const container = document.getElementById("root");
