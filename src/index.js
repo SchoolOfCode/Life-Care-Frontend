@@ -1,24 +1,23 @@
 import React from "react";
-import ReactDOM from "react-dom/client";
-import "./styles/App.css"
-import App from "./App";
-import reportWebVitals from "./reportWebVitals";
-import { Auth0Provider } from "@auth0/auth0-react";
+import { App } from "./App";
+import { createRoot } from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
+import { Auth0ProviderWithNavigate } from "./auth0-provider-with-navigate";
+import reportWebVitals from "./reportWebVitals";
+import { ChakraProvider } from "@chakra-ui/react";
+import "./styles/index.css";
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
+const container = document.getElementById("root");
+const root = createRoot(container);
+
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-    <Auth0Provider
-        domain={process.env.REACT_APP_AUTH0_DOMAIN}
-        clientId={process.env.REACT_APP_AUTH0_CLIENT_ID}
-        onRedirectCallback={process.env.REACT_APP_AUTH0_CALLBACK_URL}
-        redirectUri={`${window.location.origin}/dashboard`}
-
-      >
-      <App />
-    </Auth0Provider>
+      <Auth0ProviderWithNavigate>
+        <ChakraProvider>
+          <App />
+        </ChakraProvider>
+      </Auth0ProviderWithNavigate>
     </BrowserRouter>
   </React.StrictMode>
 );
