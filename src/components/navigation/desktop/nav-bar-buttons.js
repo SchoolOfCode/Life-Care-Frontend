@@ -4,13 +4,13 @@ import { LoginButton } from "../../buttons/login-button";
 import { LogoutButton } from "../../buttons/logout-button";
 
 export const NavBarButtons = () => {
-	const { isAuthenticated } = useAuth0();
+  const { isAuthenticated } = useAuth0();
 
-	return (
-		<div className="nav-bar__buttons">
-			{!isAuthenticated && <LoginButton />}
-			{isAuthenticated && <LogoutButton />}
-			<Link to="dashboard">Home</Link>
-		</div>
-	);
+  return (
+    <div className="nav-bar__buttons">
+      {!isAuthenticated && <LoginButton />}
+      {isAuthenticated && <LogoutButton />}
+      <a href="dashboard">Home</a>
+    </div>
+  );
 };
