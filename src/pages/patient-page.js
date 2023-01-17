@@ -1,3 +1,4 @@
+
 import { useParams, useNavigate } from "react-router-dom";
 import { PatientProfile } from "../components/patient-profile";
 import useFetch from "../hooks/useFetch";
@@ -11,10 +12,10 @@ export const Patient = () => {
     error,
   } = useFetch(`http://localhost:3005/api/patients/${id}`);
 
-  const navigate = useNavigate();
+	const navigate = useNavigate();
 
   const navigateToNotes = () => {
-    // 👇️ navigate to /contacts
+   
     navigate(`/patient/${id}/notes`);
   };
 
@@ -31,4 +32,5 @@ export const Patient = () => {
       <PatientProfile patient={patient} />
     </Container>
   );
+
 };

@@ -14,7 +14,7 @@ export const LogoutButton = () => {
     <Button
       colorScheme="teal"
       size="md"
-      className="button__logout"
+      ml={4}
       onClick={handleLogout}
     >
       Log Out
