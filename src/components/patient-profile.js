@@ -1,6 +1,5 @@
 import { useParams } from "react-router-dom";
 import useFetch from "../hooks/useFetch";
-import { Card, CardHeader, CardBody, CardFooter } from "@chakra-ui/react";
 import { Avatar, Wrap, WrapItem } from "@chakra-ui/react";
 
 export const PatientProfile = () => {

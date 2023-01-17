@@ -16,7 +16,6 @@ export const LoginButton = () => {
     <Button
       colorScheme="teal"
       size="md"
-      className="button__logout"
       onClick={handleLogin}
     >
       Log In

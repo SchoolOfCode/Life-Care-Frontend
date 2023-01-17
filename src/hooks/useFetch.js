@@ -29,7 +29,7 @@ const useFetch = (url) => {
 			}
 		}
 		fetchData();
-	}, [url]);
+	}, [getAccessTokenSilently, url]);
 
 	return { data, isPending, error };
 };

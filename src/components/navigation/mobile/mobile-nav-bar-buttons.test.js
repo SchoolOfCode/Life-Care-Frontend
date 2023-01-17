@@ -1,6 +1,9 @@
+/* eslint-disable testing-library/no-node-access */
+/* eslint-disable testing-library/no-container */
+/* eslint-disable testing-library/no-debugging-utils */
 import { React } from "react";
 import { screen, render } from "@testing-library/react";
-import { test, expect } from "@jest/globals";
+import { test, expect, } from "@jest/globals";
 import { MobileNavBarButtons } from "./mobile-nav-bar-buttons";
 
 test("Check that div is rendering", () => {
