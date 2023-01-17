@@ -1,11 +1,15 @@
 import { NavBarButtons } from "./nav-bar-buttons";
+import { ReactComponent as Logo } from "../../../assets/lifecare-logo.svg";
+import { Container, Flex, Spacer } from "@chakra-ui/react";
 
 export const NavBar = () => {
-  return (
-    <div className="nav-bar__container">
-      <nav className="nav-bar">
+	return (
+		<Container maxW={'100%'}>
+      <Flex align='center'>
+        <Logo height="50px" width='50px' />
+        <Spacer/>
         <NavBarButtons />
-      </nav>
-    </div>
-  );
+      </Flex>
+    </Container>
+	);
 };

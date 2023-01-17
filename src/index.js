@@ -1,20 +1,24 @@
+import "@fontsource/titillium-web/400.css";
+import "@fontsource/oxanium/700.css";
+import "@fontsource/poppins";
+import "@fontsource/open-sans";
+import theme from './theme'
 import React from "react";
 import { App } from "./App";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import { Auth0ProviderWithNavigate } from "./auth0-provider-with-navigate";
-import reportWebVitals from "./reportWebVitals";
 import { ChakraProvider } from "@chakra-ui/react";
-import './styles/index.css'
-
+import reportWebVitals from "./reportWebVitals";
 const container = document.getElementById("root");
 const root = createRoot(container);
+
 
 root.render(
   <React.StrictMode>
     <BrowserRouter>
       <Auth0ProviderWithNavigate>
-        <ChakraProvider>
+        <ChakraProvider theme={theme}>
           <App />
         </ChakraProvider>
       </Auth0ProviderWithNavigate>
