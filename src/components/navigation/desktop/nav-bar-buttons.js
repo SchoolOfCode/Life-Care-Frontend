@@ -5,7 +5,7 @@ import { LoginButton } from "../../buttons/login-button";
 import { LogoutButton } from "../../buttons/logout-button";
 
 export const NavBarButtons = () => {
-	const { isAuthenticated } = useAuth0();
+  const { isAuthenticated } = useAuth0();
 
 	return (
 		<Flex>

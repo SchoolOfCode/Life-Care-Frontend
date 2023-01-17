@@ -11,6 +11,7 @@ test("Check that div is rendering", () => {
   expect(element).toBeTruthy();
 });
 
+
 // eslint-disable-next-line jest/no-identical-title
 test("Check that div is rendering", () => {
   const { container } = render(<MobileNavBar />);

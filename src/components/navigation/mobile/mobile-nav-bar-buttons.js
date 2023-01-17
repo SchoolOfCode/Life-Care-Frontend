@@ -5,7 +5,7 @@ import { IconButton } from "@chakra-ui/react";
 import { GiHamburgerMenu } from "react-icons/gi";
 
 export const MobileNavBarButtons = () => {
-	const { isAuthenticated } = useAuth0();
+  const { isAuthenticated } = useAuth0();
 
 	return (
 		<div className="mobile-nav-bar__buttons">
