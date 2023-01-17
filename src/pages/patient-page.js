@@ -1,36 +1,18 @@
-
-import { useParams, useNavigate } from "react-router-dom";
-import { PatientProfile } from "../components/patient-profile";
-import useFetch from "../hooks/useFetch";
-import { Button, Container } from "@chakra-ui/react";
+import { PatientInfo } from "../components/patient-info";
+import { PatientOverview } from "../components/patient-overview";
+import { PatientMedicalHistory } from "../components/patient-medical-history";
+import { TasksNotes } from "../components/buttons/tasks-notes-button";
+import { Center, Container } from "@chakra-ui/react";
 
 export const Patient = () => {
-  const { id } = useParams();
-  const {
-    data: patient,
-    isPending,
-    error,
-  } = useFetch(`http://localhost:3005/api/patients/${id}`);
-
-	const navigate = useNavigate();
-
-  const navigateToNotes = () => {
-   
-    navigate(`/patient/${id}/notes`);
-  };
-
   return (
-    <Container className="patient-details">
-      <Button
-        onClick={navigateToNotes}
-        colorScheme="teal"
-        size="md"
-        className="tasks-notes"
-      >
-        Tasks & Notes
-      </Button>
-      <PatientProfile patient={patient} />
+    <Container>
+      <Center>
+        <TasksNotes />
+      </Center>
+      <PatientInfo />
+      <PatientOverview />
+      <PatientMedicalHistory />
     </Container>
   );
-
 };
