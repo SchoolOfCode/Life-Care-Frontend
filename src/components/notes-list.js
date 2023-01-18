@@ -11,19 +11,23 @@ export const NotesList = () => {
     error,
   } = useFetch(`http://localhost:3005/api/patients/${id}/notes`);
 
+  console.log(notes);
+
   return (
     <Container>
-      <Note />
+      {error && <div>{error}</div>}
+      {isPending && <div>Loading...</div>}
+      {notes && (
+        <div>
+          {notes.map((note, i) => {
+            return (
+              <div>
+                <Note content={note} key={i} />
+              </div>
+            );
+          })}
+        </div>
+      )}
     </Container>
   );
 };
-
-// export const NotesList = () => {
-// 	return (
-// 		<div>
-// 			{notes.map((note, i) => {
-// 				return <Note content={note} key={i} />;
-// 			})}
-// 		</div>
-// 	);
-// };
