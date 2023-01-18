@@ -1,28 +1,29 @@
-import { useParams } from "react-router-dom";
-import useFetch from "../hooks/useFetch";
-import { Avatar, Wrap, WrapItem } from "@chakra-ui/react";
+import {
+  Avatar,
+  Wrap,
+  WrapItem,
+  Heading,
+  Card,
+  Container,
+  Center,
+} from "@chakra-ui/react";
 
-export const PatientProfile = () => {
-  const { id } = useParams();
-  const { data, isPending, error } = useFetch(
-    `http://localhost:3005/api/patients/${id}`
-  );
-
+export const PatientProfile = (data) => {
   return (
-    <div className="patient-details">
-      <Wrap>
-        <WrapItem>
-          <Avatar
-            size="2xl"
-            name="Segun Adebayo"
-            src="https://bit.ly/sage-adebayo"
-          />
-        </WrapItem>
-      </Wrap>
-      <h1>Name</h1>
-      {error && <div>{error}</div>}
-      {isPending && <div>Loading...</div>}
-      {data && JSON.stringify(data)}
-    </div>
+    <Container className="patient-details">
+      <Center p="20px">
+        <Wrap>
+          <WrapItem>
+            <Avatar
+              size="2xl"
+              name="Segun Adebayo"
+              src="https://bit.ly/sage-adebayo"
+            />
+          </WrapItem>
+        </Wrap>
+      </Center>
+      <Heading key={data.patient_id}>{data.patient_name}</Heading>
+      <Card>{data && JSON.stringify(data)}</Card>
+    </Container>
   );
 };
