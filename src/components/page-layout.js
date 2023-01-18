@@ -6,7 +6,7 @@ export const Layout = ({ children }) => {
 	return (
 		<div className="layout">
 			<NavBar />
-			<MobileNavBar />
+			{/* <MobileNavBar /> */}
 			<div className="page-layout__content">{children}</div>
 			<Outlet />
 		</div>

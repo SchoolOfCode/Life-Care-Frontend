@@ -8,7 +8,7 @@ export const NavBarButtons = () => {
   const { isAuthenticated } = useAuth0();
 
 	return (
-		<Flex>
+		<Flex display={["none", "none", "flex", "flex"]}>
 			<Box>
 				<Link to={"/dashboard"}>
 					<Button variant="ghost" aria-label="Dashboard" my={5} w="100%">
