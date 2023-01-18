@@ -1,4 +1,4 @@
-import { Box, Button, Flex, Image, Spacer } from "@chakra-ui/react";
+import { Box, Button, Center, Flex, Grid, GridItem, Image, Spacer } from "@chakra-ui/react";
 import useFetch from "../hooks/useFetch";
 
 export const PatientList = () => {
@@ -6,15 +6,20 @@ export const PatientList = () => {
 	const { data: patients, isPending, error } = useFetch(`http://localhost:3005/api/carers/${carer_id}/patients`);
 
 	return (
-		<Box mt={133}>
+		<Center mt={133}>
 			{error && <div>{error}</div>}
 			{isPending && <div>Loading...</div>}
 			{patients && (
-				<div p="10">
-					{patients && JSON.stringify(patients)}
+
+				<Grid maxW={'90vw'} templateColumns='repeat(auto-fit, minmax(325px, 1fr))' gap={6}>
+					
+
+					{/* {patients && JSON.stringify(patients)} */}
+
+
 					{patients.map((patient) => {
 						return (
-							<Box key={patient.patient_id} boxShadow="xl" maxW="sm" borderWidth="1px" borderRadius="lg" overflow="hidden">
+							<GridItem w='100%' key={patient.patient_id} boxShadow="xl" maxW="sm" borderWidth="1px" borderRadius="lg" overflow="hidden">
 								<Image src={patient.avatar} alt={"client"} />
 								<Flex>
 									<Box w={"80%"} p="6" bg="white">
@@ -34,11 +39,11 @@ export const PatientList = () => {
 										<Button colorScheme="teal">Notes</Button>
 									</Flex>
 								</Flex>
-							</Box>
+							</GridItem>
 						);
 					})}
-				</div>
+				</Grid>
 			)}
-		</Box>
+		</Center>
 	);
 };
