@@ -4,11 +4,11 @@ import { Link } from "react-router-dom";
 import { LoginButton } from "../../buttons/login-button";
 import { LogoutButton } from "../../buttons/logout-button";
 
-export const NavBarButtons = () => {
-  const { isAuthenticated } = useAuth0();
+export const DesktopNavButtons = () => {
+	const { isAuthenticated } = useAuth0();
 
 	return (
-		<Flex>
+		<Flex display={["none", "none", "flex", "flex"]}>
 			<Box>
 				<Link to={"/dashboard"}>
 					<Button variant="ghost" aria-label="Dashboard" my={5} w="100%">
@@ -31,7 +31,7 @@ export const NavBarButtons = () => {
 				</Link>
 			</Box>
 			<Center>
-        {!isAuthenticated && <LoginButton />}
+				{!isAuthenticated && <LoginButton />}
 				{isAuthenticated && <LogoutButton />}
 			</Center>
 		</Flex>
