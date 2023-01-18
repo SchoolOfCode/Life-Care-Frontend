@@ -11,6 +11,7 @@ export const TasksNotes = () => {
 
   return (
     <Button
+      m="20px"
       onClick={navigateToNotes}
       colorScheme="teal"
       size="md"

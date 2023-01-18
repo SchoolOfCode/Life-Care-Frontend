@@ -1,17 +1,29 @@
+import { useParams } from "react-router-dom";
+import useFetch from "../hooks/useFetch";
 import { Heading, Card, Container, Center, CardBody } from "@chakra-ui/react";
 
 export const PatientOverview = () => {
+  const { id } = useParams();
+  const {
+    data: patient,
+    isPending,
+    error,
+  } = useFetch(`http://localhost:3005/api/patients/${id}`);
+
   return (
-    <Container className="patient-overview">
-      <Center m="20px">
-        <Heading>Overview</Heading>
-      </Center>
-      <Card>
-        <CardBody>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum
-          vitae nulla mi. Etiam lacinia leo justo, non egestas arcu feugiat.
-        </CardBody>
-      </Card>
+    <Container>
+      {error && <div>{error}</div>}
+      {isPending && <div>Loading...</div>}
+      {patient && (
+        <>
+          <Center m="20px">
+            <Heading>Overview</Heading>
+          </Center>
+          <Card>
+            <CardBody>{patient.overview}</CardBody>
+          </Card>
+        </>
+      )}
     </Container>
   );
 };

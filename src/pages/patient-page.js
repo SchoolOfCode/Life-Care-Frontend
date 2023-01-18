@@ -7,9 +7,6 @@ import { Center, Container } from "@chakra-ui/react";
 export const Patient = () => {
   return (
     <Container>
-      <Center>
-        <TasksNotes />
-      </Center>
       <PatientInfo />
       <PatientOverview />
       <PatientMedicalHistory />
