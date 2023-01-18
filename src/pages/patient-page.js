@@ -2,7 +2,6 @@ import { Button } from "@chakra-ui/react";
 import { useParams, useNavigate } from "react-router-dom";
 import { PatientProfile } from "../components/patient-profile";
 import useFetch from "../hooks/useFetch";
-import { Button } from "@chakra-ui/react";
 
 export const Patient = () => {
 	const { id } = useParams();
