@@ -9,7 +9,7 @@ export function Login() {
 			<div align="center">
 				<Card maxW="md" align="center">
 					<CardBody>
-						<Logo height='18rem'/>
+						<Logo height="18rem" />
 					</CardBody>
 					<CardFooter>
 						<LoginButton />
