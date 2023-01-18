@@ -19,10 +19,15 @@ export const NotesList = () => {
       {isPending && <div>Loading...</div>}
       {notes && (
         <div>
-          {notes.map((note, i) => {
+          {notes.map((note) => {
             return (
               <div>
-                <Note content={note} key={i} />
+                <Note
+                  content={note}
+                  key={notes.note_id}
+                  error={error}
+                  isPending={isPending}
+                />
               </div>
             );
           })}
