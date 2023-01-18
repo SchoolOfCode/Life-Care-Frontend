@@ -3,6 +3,7 @@ import { PatientProfile } from "../components/patient-profile";
 import useFetch from "../hooks/useFetch";
 import { Button, Center, Container } from "@chakra-ui/react";
 
+
 export const Patient = () => {
   const { id } = useParams();
   const {
