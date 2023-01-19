@@ -1,25 +1,30 @@
+import { Alert, AlertIcon } from "@chakra-ui/react";
 import { useParams } from "react-router-dom";
 import useFetch from "../hooks/useFetch";
+import { Note } from "./note";
 
 export const NotesList = () => {
-	const { id } = useParams();
-	const { data: notes, isPending, error } = useFetch(`http://localhost:3005/api/patients/${id}/notes`);
+  const { id } = useParams();
+  const { data: notes, error } = useFetch(
+    `http://localhost:3005/api/patients/${id}/notes`
+  );
 
-	return (
-		<div className="patient-details">
-			{error && <div>{error}</div>}
-			{isPending && <div>Loading...</div>}
-			{notes && JSON.stringify(notes)}
-		</div>
-	);
+  return (
+    <>
+      {error && (
+        <Alert status="error">
+          <AlertIcon />
+          {error}
+        </Alert>
+      )}
+
+      {notes && (
+        <>
+          {notes.map((note, note_id) => {
+            return <Note content={note} key={note_id} error={error} />;
+          })}
+        </>
+      )}
+    </>
+  );
 };
-
-// export const NotesList = () => {
-// 	return (
-// 		<div>
-// 			{notes.map((note, i) => {
-// 				return <Note content={note} key={i} />;
-// 			})}
-// 		</div>
-// 	);
-// };

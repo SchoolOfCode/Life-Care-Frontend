@@ -1,54 +1,58 @@
-import { Button, ButtonGroup, Card, CardBody, CardFooter, Divider, Heading, Image, Stack, Text } from "@chakra-ui/react";
+import { Alert, AlertIcon, Box, Button, Center, Flex, Grid, GridItem, Image, Spacer } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
+import { Link as ReactRouterLink } from "react-router-dom";
 import useFetch from "../hooks/useFetch";
 
 export const PatientList = () => {
-	const dummyImgUrl = "https://media.istockphoto.com/id/157696530/photo/cranky-woman-making-faces-and-flipping-the-bird.jpg?s=612x612&w=0&k=20&c=y9_kVJuwctQYRpb5OBRvvrYqgR4o_asMKbgMy7CfxP8=";
-
 	const carer_id = 1;
-	const { data: patients, isPending, error } = useFetch(`http://localhost:3005/api/carers/${carer_id}/patients`);
+	const { data: patients, error } = useFetch(`http://localhost:3005/api/carers/${carer_id}/patients`);
 
 	return (
-		<>
-			<Heading size="lg">Client List:</Heading>
-			<div className="patients-list">
-				{error && <div>{error}</div>}
-				{isPending && <div>Loading...</div>}
-				{patients && (
-					<div>
-						{patients.map((patient) => {
-							return (
-								<Link to={`/patient/${patient.patient_id}`}>
-									<Card maxW="sm" key={patient.patient_id}>
-										<CardBody>
-											<Image
-												src={dummyImgUrl}
-												alt="client"
-												borderRadius="lg"
-											/>
-											<Stack mt="6" spacing="3">
-												<Heading size="md">{patient.patient_name}</Heading>
-												<Text>She's a bit of a handful!</Text>
-											</Stack>
-										</CardBody>
-										<Divider />
-										<CardFooter>
-											<ButtonGroup spacing="2">
-												<Button variant="solid" colorScheme="teal">
-													Profile
-												</Button>
-												<Button variant="ghost" colorScheme="teal">
-													Notes
-												</Button>
-											</ButtonGroup>
-										</CardFooter>
-									</Card>
-								</Link>
-							);
-						})}
-					</div>
-				)}
-			</div>
-		</>
+		<Center mt={133}>
+			{error && (
+				<Alert status="error">
+					<AlertIcon />
+					{error}
+				</Alert>
+			)}
+
+			{patients && (
+				<Grid maxW={"90vw"} templateColumns="repeat(auto-fit, minmax(325px, 1fr))" gap={6}>
+					{/* {patients && JSON.stringify(patients)} */}
+
+					{patients.map((patient) => {
+						return (
+							<GridItem w="100%" key={patient.patient_id} boxShadow="xl" maxW="sm" borderWidth="1px" borderRadius="lg" overflow="hidden">
+								<Image src={patient.avatar} alt={"client"} />
+								<Flex>
+									<Box w={"80%"} p="6" bg="white">
+										<Box display="flex" align="baseline">
+											<Box color="gray.500" fontWeight="semibold" letterSpacing="wide" fontSize="xs" textTransform="uppercase">
+												DOB: {patient.dob}
+											</Box>
+										</Box>
+										<Box mt="1" fontWeight="semibold" as="h4" lineHeight="tight" noOfLines={1} fontSize="xl">
+											{patient.first_name} {patient.last_name}
+										</Box>
+									</Box>
+									<Spacer />
+									<Flex gap={3} direction={"column"} grow={1} p="4" bg="white">
+										{" "}
+										<Link as={ReactRouterLink} to={`/patient/${patient.patient_id}`} style={{ textDecoration: "none" }}>
+											<Button colorScheme="teal">Profile</Button>
+										</Link>
+										<Link as={ReactRouterLink} to={`/patient/${patient.patient_id}/notes`} style={{ textDecoration: "none" }}>
+											<Button w={"100%"} colorScheme="teal">
+												Notes
+											</Button>
+										</Link>
+									</Flex>
+								</Flex>
+							</GridItem>
+						);
+					})}
+				</Grid>
+			)}
+		</Center>
 	);
 };
