@@ -1,3 +1,4 @@
+import { useAuth0 } from "@auth0/auth0-react";
 import {
   Accordion,
   AccordionButton,
@@ -18,6 +19,9 @@ export const Note = ({ content, error }) => {
   let date = new Date(content.time_stamp).toLocaleDateString();
   let time = new Date(content.time_stamp).toLocaleTimeString();
 
+  const { user } = useAuth0();
+  console.log(user);
+
   return (
     <>
       {error && (
@@ -32,7 +36,7 @@ export const Note = ({ content, error }) => {
           <Card mt="20px">
             <CardHeader>
               <Flex>
-                <Heading size="md">Carer Name</Heading>
+                <Heading size="md">Meridith Cooper</Heading>
                 <Spacer />
                 <Flex direction="column">
                   <Box>{time}</Box>
