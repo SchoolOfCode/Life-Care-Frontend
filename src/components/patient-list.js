@@ -1,4 +1,6 @@
 import { Alert, AlertIcon, Box, Button, Center, Flex, Grid, GridItem, Image, Spacer } from "@chakra-ui/react";
+import { Link } from "react-router-dom";
+import { Link as ReactRouterLink } from "react-router-dom";
 import useFetch from "../hooks/useFetch";
 
 export const PatientList = () => {
@@ -36,8 +38,14 @@ export const PatientList = () => {
 									<Spacer />
 									<Flex gap={3} direction={"column"} grow={1} p="4" bg="white">
 										{" "}
-										<Button colorScheme="teal">Profile</Button>
-										<Button colorScheme="teal">Notes</Button>
+										<Link as={ReactRouterLink} to={`/patient/${patient.patient_id}`} style={{ textDecoration: "none" }}>
+											<Button colorScheme="teal">Profile</Button>
+										</Link>
+										<Link as={ReactRouterLink} to={`/patient/${patient.patient_id}/notes`} style={{ textDecoration: "none" }}>
+											<Button w={"100%"} colorScheme="teal">
+												Notes
+											</Button>
+										</Link>
 									</Flex>
 								</Flex>
 							</GridItem>
