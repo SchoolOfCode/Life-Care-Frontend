@@ -2,10 +2,13 @@ import useFetch from "../hooks/useFetch";
 import { useParams } from "react-router-dom";
 import { Avatar, Wrap, WrapItem, Heading, Card, Center, CardBody, AlertIcon, Alert } from "@chakra-ui/react";
 import { TasksNotes } from "./buttons/tasks-notes-button";
+import { useAuth0 } from "@auth0/auth0-react";
 
 export const PatientInfo = () => {
-	const { id } = useParams();
-	const { data: patient, error } = useFetch(`http://localhost:3005/api/patients/${id}`);
+	const { user } = useAuth0();
+	const { data: patient, error } = useFetch(`http://localhost:3005/api/patients/${user.carer_id}`);
+
+	console.log(user.carer_id);
 
 	return (
 		<>

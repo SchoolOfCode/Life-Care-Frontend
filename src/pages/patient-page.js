@@ -5,7 +5,7 @@ import { Container } from "@chakra-ui/react";
 
 export const Patient = () => {
 	return (
-		<Container>
+		<Container paddingBlockEnd={10}>
 			<PatientInfo />
 			<PatientOverview />
 			<PatientMedicalHistory />

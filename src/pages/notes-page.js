@@ -4,7 +4,7 @@ import { NotesList } from "../components/notes-list";
 
 export const Notes = () => {
   return (
-    <Container>
+    <Container paddingBlockEnd={10}>
       <NewNoteForm />
       <NotesList />
     </Container>
