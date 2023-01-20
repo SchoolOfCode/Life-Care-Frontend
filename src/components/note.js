@@ -36,7 +36,7 @@ export const Note = ({ content, error }) => {
           <Card mt="20px">
             <CardHeader>
               <Flex>
-                <Heading size="md">Meridith Cooper</Heading>
+                <Heading size="md">{`${content.first_name} ${content.last_name}`}</Heading>
                 <Spacer />
                 <Flex direction="column">
                   <Box>{time}</Box>
