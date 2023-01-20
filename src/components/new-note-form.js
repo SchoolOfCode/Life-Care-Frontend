@@ -30,7 +30,13 @@ export const NewNoteForm = () => {
           <ModalCloseButton />
           <ModalBody>
             <Stack spacing={3}>
-              <Input placeholder="Overview" size="md" />
+              <Input
+                placeholder="Overview"
+                size="md"
+                onChange={(event) => {
+                  console.log(event.target.value);
+                }}
+              />
               <Input placeholder="Incidents/Concerns" size="md" />
               <Input placeholder="Additional Information" size="md" />
 
@@ -57,12 +63,17 @@ export const NewNoteForm = () => {
   );
 };
 
-//   <form action="submit">
-//   <h2>ADD NEW NOTE</h2>
-//   <label>Brief overview of your visit:</label>
-//   <input></input>
-//   <label>Incidents / concerns?</label>
-//   <input></input>
-//   <label>Additional Information:</label>
-//   <input></input>
-// </form>
+// const newNote = {
+// 	patient_id: patient_id,
+// 	carer_id: carer_id,
+// 	content: /* overview */,
+// 	incidents: /* incidents/concerns */ ,
+// 	additional: /* additional information */ ,
+// 	time_stamp: formatDateTime(),
+// 	seen: false};
+
+// const response = await fetch(`http://localhost:3005/api/patients/${id}/notes`, {
+//   method: "POST",
+//   headers: { "Content-Type": "application/json" },
+//   body: JSON.stringify(newNote),
+// });
