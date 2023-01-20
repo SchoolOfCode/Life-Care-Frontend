@@ -8,7 +8,7 @@ export const NotesList = () => {
   const { data: notes, error } = useFetch(
     `http://localhost:3005/api/patients/${id}/notes`
   );
-
+  console.log(notes);
   return (
     <>
       {error && (
