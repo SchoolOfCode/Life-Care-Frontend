@@ -8,7 +8,7 @@ export const PatientList = () => {
 	const { data: patients, error } = useFetch(`http://localhost:3005/api/carers/${carer_id}/patients`);
 
 	return (
-		<Center mt={133}>
+		<Center mt={13}>
 			{error && (
 				<Alert status="error">
 					<AlertIcon />
