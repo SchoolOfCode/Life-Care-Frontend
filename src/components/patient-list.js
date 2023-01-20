@@ -2,10 +2,11 @@ import { Alert, AlertIcon, Box, Button, Center, Flex, Grid, GridItem, Image, Spa
 import { Link } from "react-router-dom";
 import { Link as ReactRouterLink } from "react-router-dom";
 import useFetch from "../hooks/useFetch";
+import { useAuth0 } from "@auth0/auth0-react";
 
 export const PatientList = () => {
-	const carer_id = 1;
-	const { data: patients, error } = useFetch(`http://localhost:3005/api/carers/${carer_id}/patients`);
+	const { user } = useAuth0();
+	const { data: patients, error } = useFetch(`http://localhost:3005/api/carers/${user.carer_id}/patients`);
 
 	return (
 		<Center mt={13}>
