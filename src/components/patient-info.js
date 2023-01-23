@@ -1,14 +1,11 @@
 import useFetch from "../hooks/useFetch";
 import { useParams } from "react-router-dom";
-import { Avatar, Wrap, WrapItem, Heading, Card, Center, CardBody, AlertIcon, Alert } from "@chakra-ui/react";
+import { Avatar, Wrap, WrapItem, Heading, Card, Center, CardBody, AlertIcon, Alert, Container } from "@chakra-ui/react";
 import { TasksNotes } from "./buttons/tasks-notes-button";
-import { useAuth0 } from "@auth0/auth0-react";
 
 export const PatientInfo = () => {
-	const { user } = useAuth0();
-	const { data: patient, error } = useFetch(`http://localhost:3005/api/patients/${user.carer_id}`);
-
-	console.log(user.carer_id);
+	const { id } = useParams();
+	const { data: patient, error } = useFetch(`http://localhost:3005/api/patients/${id}`);
 
 	return (
 		<>
@@ -34,18 +31,20 @@ export const PatientInfo = () => {
 					<Center>
 						<TasksNotes />
 					</Center>
-					<Card>
-						<CardBody>
-							<strong>Address: </strong>
-							{patient.address}
-							<br></br>
-							<strong>Date of birth: </strong>
-							{patient.dob}
-							<br></br>
-							<strong>Patient number: </strong>
-							{patient.number}
-						</CardBody>
-					</Card>
+					<Container>
+						<Card>
+							<CardBody>
+								<strong>Address: </strong>
+								{patient.address}
+								<br></br>
+								<strong>Date of birth: </strong>
+								{patient.dob}
+								<br></br>
+								<strong>Patient number: </strong>
+								{patient.number}
+							</CardBody>
+						</Card>
+					</Container>
 				</>
 			)}
 		</>
