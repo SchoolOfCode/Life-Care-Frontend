@@ -33,7 +33,9 @@ export const NewNoteForm = () => {
 			});
 
 			const result = await response.json();
+			console.log(result);
 		} catch (error) {
+			console.error(error);
 		}
 	}
 

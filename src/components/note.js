@@ -1,4 +1,3 @@
-import { useAuth0 } from "@auth0/auth0-react";
 import {
   Accordion,
   AccordionButton,
@@ -18,8 +17,6 @@ import {
 export const Note = ({ content, error }) => {
   let date = new Date(content.time_stamp).toLocaleDateString();
   let time = new Date(content.time_stamp).toLocaleTimeString();
-
-  const { user } = useAuth0();
 
   return (
     <>
