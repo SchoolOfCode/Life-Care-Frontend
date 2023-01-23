@@ -6,7 +6,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 export function Dashboard() {
 	const { user } = useAuth0();
-	let { data: carer, error } = useFetch(`http://localhost:3005/api/carers/${user.carer_id}`);
+	let { data: carer, error } = useFetch(`${process.env.REACT_APP_API_SERVER_URL}/api/carers/${user.carer_id}`);
 
 	console.log(user.carer_id);
 
