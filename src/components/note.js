@@ -20,7 +20,6 @@ export const Note = ({ content, error }) => {
   let time = new Date(content.time_stamp).toLocaleTimeString();
 
   const { user } = useAuth0();
-  console.log(user);
 
   return (
     <>
