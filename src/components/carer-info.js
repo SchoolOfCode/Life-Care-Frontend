@@ -4,9 +4,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 export const CarerInfo = () => {
 	const { user } = useAuth0();
-	const { data: carer, error } = useFetch(`http://localhost:3005/api/carers/${user.carer_id}`);
-
-	console.log(user.carer_id);
+	const { data: carer, error } = useFetch(`${process.env.REACT_APP_API_SERVER_URL}/api/carers/${user.carer_id}`);
 
 	return (
 		<>
@@ -27,7 +25,7 @@ export const CarerInfo = () => {
 						</Wrap>
 					</Center>
 					{/* <Center m="10px"> */}
-						<Heading textAlign={'center'}>{`Welcome back, ${carer.first_name}!`}</Heading>
+					<Heading textAlign={"center"}>{`Welcome back, ${carer.first_name}!`}</Heading>
 					{/* </Center> */}
 					<Card></Card>
 				</>

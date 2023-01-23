@@ -8,8 +8,6 @@ export function Dashboard() {
 	const { user } = useAuth0();
 	let { data: carer, error } = useFetch(`${process.env.REACT_APP_API_SERVER_URL}/api/carers/${user.carer_id}`);
 
-	console.log(user.carer_id);
-
 	return (
 		<Container paddingBlockEnd={10}>
 			<Center>

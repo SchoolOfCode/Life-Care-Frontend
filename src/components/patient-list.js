@@ -6,7 +6,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 export const PatientList = () => {
 	const { user } = useAuth0();
-	const { data: patients, error } = useFetch(`http://localhost:3005/api/carers/${user.carer_id}/patients`);
+	const { data: patients, error } = useFetch(`${process.env.REACT_APP_API_SERVER_URL}/api/carers/${user.carer_id}/patients`);
 
 	return (
 		<Center mt={13}>
