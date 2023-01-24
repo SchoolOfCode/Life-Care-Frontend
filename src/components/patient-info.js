@@ -19,8 +19,9 @@ export const PatientInfo = () => {
   const { data: patient, error } = useFetch(
     `http://localhost:3005/api/patients/${id}`
   );
+  let dob = new Date(patient?.dob).toLocaleDateString();
+  console.log(typeof patient?.dob);
 
-  let dob = new Date(patient.dob).toLocaleDateString();
   return (
     <>
       {error && (

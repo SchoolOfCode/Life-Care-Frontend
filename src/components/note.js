@@ -16,8 +16,15 @@ import {
 } from "@chakra-ui/react";
 
 export const Note = ({ content, error }) => {
-  let date = new Date(content.time_stamp).toLocaleDateString();
-  let time = new Date(content.time_stamp).toLocaleTimeString();
+  let date = new Date(content.time_stamp).toLocaleDateString("en-GB", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  });
+  let time = new Date(content.time_stamp).toLocaleTimeString("en-GB", {
+    hour: "2-digit",
+    minute: "2-digit",
+  });
 
   const { user } = useAuth0();
   console.log(user);
