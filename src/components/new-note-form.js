@@ -25,7 +25,7 @@ export const NewNoteForm = () => {
   const [overviewValue, setOverview] = useState("");
   const [incidentValue, setIncident] = useState("No incident or concerns");
   const [additionalValue, setAdditional] = useState(
-    "No additional information today"
+    "No additional information "
   );
   const { id } = useParams();
   const { getAccessTokenSilently } = useAuth0();
@@ -66,7 +66,6 @@ export const NewNoteForm = () => {
     }
   }
 
-
   // function for incidents & concerns
   const handleToggle = (event) => {
     setShowIncident(event.target.checked);
@@ -84,6 +83,7 @@ export const NewNoteForm = () => {
           Add New Note
         </Button>
       </Center>
+
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
@@ -98,7 +98,7 @@ export const NewNoteForm = () => {
               />
               <FormControl display="flex" alignItems="center">
                 <FormLabel htmlFor="Incidents & concerns" mb="0">
-                  Incidents & concerns
+                  Any incidents/concerns?
                 </FormLabel>
                 <Switch
                   id="incident_concern"
@@ -146,36 +146,7 @@ export const NewNoteForm = () => {
             >
               Close
             </Button>
-            <Button colorScheme="teal" mr={3} onClick={handleClick}>
-              Post
-            </Button>
-          </ModalFooter>
-        </ModalContent>
-      </Modal>
-    </>
-  );
-};
-              {/* needs sanitizing? */}
-            </Stack>
-          </ModalBody>
-
-          <ModalFooter>
-            <Button
-              mr="10px"
-              colorScheme="teal"
-              variant="outline"
-              onClick={onClose}
-            >
-              Close
-            </Button>
-            <Button
-              colorScheme="teal"
-              mr={3}
-              onClick={() => {
-                handleClick();
-                onClose();
-              }}
-            >
+            <Button colorScheme="teal" mr={3} onClick={() => {handleClick(); onClose();}}>
               Post
             </Button>
           </ModalFooter>
