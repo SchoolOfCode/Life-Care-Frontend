@@ -17,7 +17,7 @@ import {
   Switch,
   FormControl,
   FormLabel,
-  useToast
+  useToast,
 } from "@chakra-ui/react";
 
 export const NewNoteForm = () => {
@@ -37,6 +37,8 @@ export const NewNoteForm = () => {
   // state for additional information
   const [showAdditional, setAdditionalInfo] = useState(false);
   const toast = useToast();
+
+  const [buttonPressed, setButtonPressed] = useState(false);
 
   async function handleClick() {
     try {
@@ -62,6 +64,9 @@ export const NewNoteForm = () => {
       );
 
       const result = await response.json();
+
+      setButtonPressed(true);
+
       console.log(result);
       toast({
         title: "Note added.",
@@ -162,7 +167,14 @@ export const NewNoteForm = () => {
             >
               Close
             </Button>
-            <Button colorScheme="teal" mr={3} onClick={() => {handleClick(); onClose();}}>
+            <Button
+              colorScheme="teal"
+              mr={3}
+              onClick={() => {
+                handleClick();
+                onClose();
+              }}
+            >
               Post
             </Button>
           </ModalFooter>
