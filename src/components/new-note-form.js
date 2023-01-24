@@ -14,17 +14,27 @@ import {
   ModalOverlay,
   Stack,
   useDisclosure,
+  Switch,
+  FormControl,
+  FormLabel,
 } from "@chakra-ui/react";
 
 export const NewNoteForm = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { user } = useAuth0();
   const [overviewValue, setOverview] = useState("");
-  const [incidentValue, setIncident] = useState("");
-  const [additionalValue, setAdditional] = useState("");
+  const [incidentValue, setIncident] = useState("No incident or concerns");
+  const [additionalValue, setAdditional] = useState(
+    "No additional information today"
+  );
   const { id } = useParams();
   const { getAccessTokenSilently } = useAuth0();
-  // const currentDate = Date().toJSON();
+
+  // state for incidents & concerns
+  const [showIncident, setShowIncident] = useState(false);
+
+  // state for additional information
+  const [showAdditional, setAdditionalInfo] = useState(false);
 
   async function handleClick() {
     try {
@@ -36,9 +46,6 @@ export const NewNoteForm = () => {
         additional: additionalValue,
         time_stamp: new Date(),
       };
-
-      console.log(newNote);
-
       const accessToken = await getAccessTokenSilently();
       const response = await fetch(
         `${process.env.REACT_APP_API_SERVER_URL}/api/patients/${id}/notes`,
@@ -59,6 +66,17 @@ export const NewNoteForm = () => {
     }
   }
 
+
+  // function for incidents & concerns
+  const handleToggle = (event) => {
+    setShowIncident(event.target.checked);
+  };
+
+  // function for additional information
+  const handleAdditonalToggle = (event) => {
+    setAdditionalInfo(event.target.checked);
+  };
+
   return (
     <>
       <Center>
@@ -66,7 +84,6 @@ export const NewNoteForm = () => {
           Add New Note
         </Button>
       </Center>
-
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
@@ -79,17 +96,65 @@ export const NewNoteForm = () => {
                 size="md"
                 onChange={(event) => setOverview(event.target.value)}
               />
-              <Input
-                placeholder="Incidents/Concerns"
-                size="md"
-                onChange={(event) => setIncident(event.target.value)}
-              />
-              <Input
-                placeholder="Additional Information"
-                size="md"
-                onChange={(event) => setAdditional(event.target.value)}
-              />
+              <FormControl display="flex" alignItems="center">
+                <FormLabel htmlFor="Incidents & concerns" mb="0">
+                  Incidents & concerns
+                </FormLabel>
+                <Switch
+                  id="incident_concern"
+                  checked={showIncident}
+                  onChange={handleToggle}
+                  colorScheme="teal"
+                />
+              </FormControl>
+              {showIncident && (
+                <Input
+                  placeholder="Incidents/Concerns"
+                  size="md"
+                  onChange={(event) => setIncident(event.target.value)}
+                />
+              )}
+              <FormControl display="flex" alignItems="center">
+                <FormLabel htmlFor="Additional information" mb="0">
+                  Any additional information?
+                </FormLabel>
+                <Switch
+                  id="additional_info"
+                  checked={showAdditional}
+                  onChange={handleAdditonalToggle}
+                  colorScheme="teal"
+                ></Switch>
+              </FormControl>
+              {showAdditional && (
+                <Input
+                  placeholder="Additional Information"
+                  size="md"
+                  onChange={(event) => setAdditionalInfo(event.target.value)}
+                />
+              )}
 
+              {/* needs sanitizing? */}
+            </Stack>
+          </ModalBody>
+
+          <ModalFooter>
+            <Button
+              mr="10px"
+              colorScheme="teal"
+              variant="outline"
+              onClick={onClose}
+            >
+              Close
+            </Button>
+            <Button colorScheme="teal" mr={3} onClick={handleClick}>
+              Post
+            </Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
+    </>
+  );
+};
               {/* needs sanitizing? */}
             </Stack>
           </ModalBody>
