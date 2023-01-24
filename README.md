@@ -1,70 +1,30 @@
-# Getting Started with Create React App
+# LifeCare - Front End ReadMe
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+We realised that carers in the healthcare industry often struggle with outdated and inefficient tools for managing patient handovers. Our app addresses this issue by providing a streamlined and user-friendly platform for carers to quickly and easily access patient information and make notes. The ultimate purpose of our app is to eliminate unnecessary information and ideally should streamline the process of updating patient information, that should make it faster and more efficient. previous carers' notes are easily accessible, improving continuity of care for patients. Our app is the solution to the common problems carers face in the field.
 
-## Available Scripts
+#
 
-In the project directory, you can run:
+# Tech Stack
 
-### `npm start`
+- This application was designed and built using React, a popular JavaScript library for building user interfaces.
+- The styling of the portfolio is achieved through the use of Chakra UI, a front-end library that provides pre-built, customizable components for building responsive, mobile-first websites.
+- Authentication and authorization for the portfolio is handled by Auth0, a platform for user authentication and management.
+- The front-end components of the portfolio are tested and validated using Cypress, a powerful end-to-end testing framework.
+- Navigation throughout the portfolio is facilitated by React-Router, a library for client-side routing in React applications.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+#
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+# Planning and Design
 
-### `npm test`
+- Project management and organization was accomplished utilizing Trello, a web-based project management tool that allows for easy task tracking and collaboration.
+- The initial stages of design and planning were accomplished through the use of low-fidelity wireframes, which were created and iterated on using Figma, a browser-based design and prototyping tool.
+- The design process continued with the creation of high-fidelity wireframes and design mockups using Figma, enabling the team to refine and finalize the visual elements of the portfolio.
+- Strategic planning and idea generation was facilitated through the use of Miro, an online collaboration and brainstorming platform that allows for virtual whiteboarding and visual mapping of project goals and objectives.
+- Agile development methodologies were employed, with daily sprints being conducted to ensure consistent progress and timely completion of tasks.
+- The team utilized Notions as a centralized platform for sprint planning, task management, and daily stand-up meetings, ensuring that all team members were aligned on project goals and aware of each other's progress and blockers.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+#
 
-### `npm run build`
+# Deployment
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- This portfolio is hosted on Render
