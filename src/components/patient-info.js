@@ -16,9 +16,8 @@ import { TasksNotes } from "./buttons/tasks-notes-button";
 
 export const PatientInfo = () => {
   const { id } = useParams();
-  const { data: patient, error } = useFetch(
-    `http://localhost:3005/api/patients/${id}`
-  );
+	const { data: patient, error } = useFetch(`${process.env.REACT_APP_API_SERVER_URL}/api/patients/${id}`);
+
   let dob = new Date(patient?.dob).toLocaleDateString();
   console.log(typeof patient?.dob);
 
