@@ -4,25 +4,27 @@ import useFetch from "../hooks/useFetch";
 import { Note } from "./note";
 
 export const NotesList = () => {
-	const { id } = useParams();
-	const { data: notes, error } = useFetch(`${process.env.REACT_APP_API_SERVER_URL}/api/patients/${id}/notes`);
+  const { id } = useParams();
+  const { data: notes, error } = useFetch(
+    `${process.env.REACT_APP_API_SERVER_URL}/api/patients/${id}/notes`
+  );
 
-	return (
-		<>
-			{error && (
-				<Alert status="error">
-					<AlertIcon />
-					{error}
-				</Alert>
-			)}
+  return (
+    <>
+      {error && (
+        <Alert status="error">
+          <AlertIcon />
+          {error}
+        </Alert>
+      )}
 
-			{notes && (
-				<>
-					{notes.map((note, note_id) => {
-						return <Note content={note} key={note_id} error={error} />;
-					})}
-				</>
-			)}
-		</>
-	);
+      {notes && (
+        <>
+          {notes.map((note, note_id) => {
+            return <Note note={note} key={note_id} error={error} />;
+          })}
+        </>
+      )}
+    </>
+  );
 };
