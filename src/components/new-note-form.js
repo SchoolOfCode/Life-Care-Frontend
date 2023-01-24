@@ -27,8 +27,13 @@ export const NewNoteForm = () => {
   const [additionalValue, setAdditional] = useState("");
   const { id } = useParams();
   const { getAccessTokenSilently } = useAuth0();
+
+  // state for incidents & concerns 
   const [showIncident, setShowIncident] = useState(false);
-  // const currentDate = Date().toJSON();
+
+  // state for additional information
+  const [showAdditional, setAdditionalInfo] = useState(false);
+
 
   async function handleClick() {
     try {
@@ -59,9 +64,15 @@ export const NewNoteForm = () => {
     }
   }
 
+  // function for incidents & concerns
   const handleToggle = (event) => {
     setShowIncident(event.target.checked);
   };
+
+  // function for additional information
+  const handleAdditonalToggle = (event) => {
+    setAdditionalInfo(event.target.checked);
+  }
 
   return (
     <>
@@ -91,6 +102,7 @@ export const NewNoteForm = () => {
                   id="incident_concern"
                   checked={showIncident}
                   onChange={handleToggle}
+                  colorScheme='teal'
                 />
               </FormControl>
               {showIncident && (
@@ -100,13 +112,24 @@ export const NewNoteForm = () => {
                   onChange={(event) => setIncident(event.target.value)}
                 />
               )}
-
-              <Input
-                placeholder="Additional Information"
-                size="md"
-                onChange={(event) => setAdditional(event.target.value)}
-              />
-
+              <FormControl display="flex" alignItems="center">
+                <FormLabel htmlFor="Additional information" mb="0">
+                  Any additional information?
+                </FormLabel>
+                  <Switch id="additional_info"
+                  checked={showAdditional}
+                  onChange={handleAdditonalToggle}
+                  colorScheme='teal'
+                  ></Switch>
+              </FormControl>{
+                showAdditional && (
+                  <Input
+                  placeholder="Additional Information"
+                  size="md"
+                  onChange={(event) => setAdditionalInfo(event.target.value)}
+                />
+                )
+              }
               {/* needs sanitizing? */}
             </Stack>
           </ModalBody>
