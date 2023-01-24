@@ -23,24 +23,25 @@ export const NewNoteForm = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { user } = useAuth0();
   const [overviewValue, setOverview] = useState("");
-  const [incidentValue, setIncident] = useState("");
-  const [additionalValue, setAdditional] = useState("");
+  const [incidentValue, setIncident] = useState("No incident or concerns");
+  const [additionalValue, setAdditional] = useState(
+    "No additional information today"
+  );
   const { id } = useParams();
   const { getAccessTokenSilently } = useAuth0();
 
-  // state for incidents & concerns 
+  // state for incidents & concerns
   const [showIncident, setShowIncident] = useState(false);
 
   // state for additional information
   const [showAdditional, setAdditionalInfo] = useState(false);
-
 
   async function handleClick() {
     try {
       const newNote = {
         patient_id: id,
         carer_id: user.carer_id,
-        content: overviewValue,
+        overview: overviewValue,
         incidents: incidentValue,
         additional: additionalValue,
       };
@@ -72,7 +73,7 @@ export const NewNoteForm = () => {
   // function for additional information
   const handleAdditonalToggle = (event) => {
     setAdditionalInfo(event.target.checked);
-  }
+  };
 
   return (
     <>
@@ -102,7 +103,7 @@ export const NewNoteForm = () => {
                   id="incident_concern"
                   checked={showIncident}
                   onChange={handleToggle}
-                  colorScheme='teal'
+                  colorScheme="teal"
                 />
               </FormControl>
               {showIncident && (
@@ -116,20 +117,21 @@ export const NewNoteForm = () => {
                 <FormLabel htmlFor="Additional information" mb="0">
                   Any additional information?
                 </FormLabel>
-                  <Switch id="additional_info"
+                <Switch
+                  id="additional_info"
                   checked={showAdditional}
                   onChange={handleAdditonalToggle}
-                  colorScheme='teal'
-                  ></Switch>
-              </FormControl>{
-                showAdditional && (
-                  <Input
+                  colorScheme="teal"
+                ></Switch>
+              </FormControl>
+              {showAdditional && (
+                <Input
                   placeholder="Additional Information"
                   size="md"
                   onChange={(event) => setAdditionalInfo(event.target.value)}
                 />
-                )
-              }
+              )}
+
               {/* needs sanitizing? */}
             </Stack>
           </ModalBody>
