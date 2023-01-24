@@ -44,6 +44,7 @@ export const NewNoteForm = () => {
         overview: overviewValue,
         incidents: incidentValue,
         additional: additionalValue,
+        time_stamp: new Date(),
       };
       const accessToken = await getAccessTokenSilently();
       const response = await fetch(
@@ -65,6 +66,7 @@ export const NewNoteForm = () => {
     }
   }
 
+
   // function for incidents & concerns
   const handleToggle = (event) => {
     setShowIncident(event.target.checked);
@@ -82,7 +84,6 @@ export const NewNoteForm = () => {
           Add New Note
         </Button>
       </Center>
-
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
@@ -154,18 +155,32 @@ export const NewNoteForm = () => {
     </>
   );
 };
+              {/* needs sanitizing? */}
+            </Stack>
+          </ModalBody>
 
-// const newNote = {
-// 	patient_id: patient_id,
-// 	carer_id: carer_id,
-// 	content: /* overview */,
-// 	incidents: /* incidents/concerns */ ,
-// 	additional: /* additional information */ ,
-// 	time_stamp: formatDateTime(),
-// 	seen: false};
-
-// const response = await fetch(`${process.env.REACT_APP_API_SERVER_URL}/api/patients/${id}/notes`, {
-//   method: "POST",
-//   headers: { "Content-Type": "application/json" },
-//   body: JSON.stringify(newNote),
-// });
+          <ModalFooter>
+            <Button
+              mr="10px"
+              colorScheme="teal"
+              variant="outline"
+              onClick={onClose}
+            >
+              Close
+            </Button>
+            <Button
+              colorScheme="teal"
+              mr={3}
+              onClick={() => {
+                handleClick();
+                onClose();
+              }}
+            >
+              Post
+            </Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
+    </>
+  );
+};
