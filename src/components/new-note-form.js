@@ -27,7 +27,7 @@ export const NewNoteForm = () => {
   const [additionalValue, setAdditional] = useState("");
   const { id } = useParams();
   const { getAccessTokenSilently } = useAuth0();
-  const [incidentShown, setIncidentShown] = useState(false);
+  const [showIncident, setShowIncident] = useState(false);
   // const currentDate = Date().toJSON();
 
   async function handleClick() {
@@ -59,8 +59,8 @@ export const NewNoteForm = () => {
     }
   }
 
-  const handleToggle = () => {
-    incidentShown(!incidentShown);
+  const handleToggle = (event) => {
+    setShowIncident(event.target.checked);
   };
 
   return (
@@ -87,15 +87,19 @@ export const NewNoteForm = () => {
                 <FormLabel htmlFor="Incidents & concerns" mb="0">
                   Incidents & concerns
                 </FormLabel>
-                <Switch id="incident_concern" onToggle={handleToggle} />
-                {setIncidentShown && (
-                  <Input
-                    placeholder="Incidents/Concerns"
-                    size="md"
-                    onChange={(event) => setIncident(event.target.value)}
-                  />
-                )}
+                <Switch
+                  id="incident_concern"
+                  checked={showIncident}
+                  onChange={handleToggle}
+                />
               </FormControl>
+              {showIncident && (
+                <Input
+                  placeholder="Incidents/Concerns"
+                  size="md"
+                  onChange={(event) => setIncident(event.target.value)}
+                />
+              )}
 
               <Input
                 placeholder="Additional Information"
