@@ -17,6 +17,7 @@ import {
   Switch,
   FormControl,
   FormLabel,
+  useToast
 } from "@chakra-ui/react";
 
 export const NewNoteForm = () => {
@@ -35,6 +36,7 @@ export const NewNoteForm = () => {
 
   // state for additional information
   const [showAdditional, setAdditionalInfo] = useState(false);
+  const toast = useToast();
 
   async function handleClick() {
     try {
@@ -61,8 +63,22 @@ export const NewNoteForm = () => {
 
       const result = await response.json();
       console.log(result);
+      toast({
+        title: "Note added.",
+        description: "Your note has been added.",
+        status: "success",
+        duration: 9000,
+        isClosable: true,
+        position: "top-right",
+      });
     } catch (error) {
-      console.error(error);
+      toast({
+        title: "Error",
+        description: "Error occurred while adding the note.",
+        status: "error",
+        duration: 9000,
+        isClosable: true,
+      });
     }
   }
 
@@ -129,7 +145,7 @@ export const NewNoteForm = () => {
                 <Input
                   placeholder="Additional Information"
                   size="md"
-                  onChange={(event) => setAdditionalInfo(event.target.value)}
+                  onChange={(event) => setAdditional(event.target.value)}
                 />
               )}
 
