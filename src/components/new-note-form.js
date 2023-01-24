@@ -14,17 +14,29 @@ import {
   ModalOverlay,
   Stack,
   useDisclosure,
+  Switch,
+  FormControl,
+  FormLabel,
+  useToast
 } from "@chakra-ui/react";
 
 export const NewNoteForm = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { user } = useAuth0();
   const [overviewValue, setOverview] = useState("");
-  const [incidentValue, setIncident] = useState("");
-  const [additionalValue, setAdditional] = useState("");
+  const [incidentValue, setIncident] = useState("No incident or concerns");
+  const [additionalValue, setAdditional] = useState(
+    "No additional information "
+  );
   const { id } = useParams();
   const { getAccessTokenSilently } = useAuth0();
-  // const currentDate = Date().toJSON();
+
+  // state for incidents & concerns
+  const [showIncident, setShowIncident] = useState(false);
+
+  // state for additional information
+  const [showAdditional, setAdditionalInfo] = useState(false);
+  const toast = useToast();
 
   async function handleClick() {
     try {
@@ -36,9 +48,6 @@ export const NewNoteForm = () => {
         additional: additionalValue,
         time_stamp: new Date(),
       };
-
-      console.log(newNote);
-
       const accessToken = await getAccessTokenSilently();
       const response = await fetch(
         `${process.env.REACT_APP_API_SERVER_URL}/api/patients/${id}/notes`,
@@ -54,10 +63,34 @@ export const NewNoteForm = () => {
 
       const result = await response.json();
       console.log(result);
+      toast({
+        title: "Note added.",
+        description: "Your note has been added.",
+        status: "success",
+        duration: 9000,
+        isClosable: true,
+        position: "top-right",
+      });
     } catch (error) {
-      console.error(error);
+      toast({
+        title: "Error",
+        description: "Error occurred while adding the note.",
+        status: "error",
+        duration: 9000,
+        isClosable: true,
+      });
     }
   }
+
+  // function for incidents & concerns
+  const handleToggle = (event) => {
+    setShowIncident(event.target.checked);
+  };
+
+  // function for additional information
+  const handleAdditonalToggle = (event) => {
+    setAdditionalInfo(event.target.checked);
+  };
 
   return (
     <>
@@ -79,16 +112,42 @@ export const NewNoteForm = () => {
                 size="md"
                 onChange={(event) => setOverview(event.target.value)}
               />
-              <Input
-                placeholder="Incidents/Concerns"
-                size="md"
-                onChange={(event) => setIncident(event.target.value)}
-              />
-              <Input
-                placeholder="Additional Information"
-                size="md"
-                onChange={(event) => setAdditional(event.target.value)}
-              />
+              <FormControl display="flex" alignItems="center">
+                <FormLabel htmlFor="Incidents & concerns" mb="0">
+                  Any incidents/concerns?
+                </FormLabel>
+                <Switch
+                  id="incident_concern"
+                  checked={showIncident}
+                  onChange={handleToggle}
+                  colorScheme="teal"
+                />
+              </FormControl>
+              {showIncident && (
+                <Input
+                  placeholder="Incidents/Concerns"
+                  size="md"
+                  onChange={(event) => setIncident(event.target.value)}
+                />
+              )}
+              <FormControl display="flex" alignItems="center">
+                <FormLabel htmlFor="Additional information" mb="0">
+                  Any additional information?
+                </FormLabel>
+                <Switch
+                  id="additional_info"
+                  checked={showAdditional}
+                  onChange={handleAdditonalToggle}
+                  colorScheme="teal"
+                ></Switch>
+              </FormControl>
+              {showAdditional && (
+                <Input
+                  placeholder="Additional Information"
+                  size="md"
+                  onChange={(event) => setAdditional(event.target.value)}
+                />
+              )}
 
               {/* needs sanitizing? */}
             </Stack>
@@ -103,14 +162,7 @@ export const NewNoteForm = () => {
             >
               Close
             </Button>
-            <Button
-              colorScheme="teal"
-              mr={3}
-              onClick={() => {
-                handleClick();
-                onClose();
-              }}
-            >
+            <Button colorScheme="teal" mr={3} onClick={() => {handleClick(); onClose();}}>
               Post
             </Button>
           </ModalFooter>
