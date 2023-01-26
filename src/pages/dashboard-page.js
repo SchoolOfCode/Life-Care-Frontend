@@ -11,7 +11,6 @@ export function Dashboard() {
 	return (
 		<Container paddingBlockEnd={10}>
 			<Center>
-				{/* {carer && JSON.stringify(carer)} */}
 				{error && (
 					<Alert status="error">
 						<AlertIcon />
@@ -21,9 +20,6 @@ export function Dashboard() {
 				{carer && (
 					<Flex direction={"column"} w={"90vw"}>
 						<CarerInfo />
-						<Heading mt={14} fontSize={["md", "md", "lg", "lg"]}>
-							Your Clients:
-						</Heading>
 						<PatientList />
 					</Flex>
 				)}
