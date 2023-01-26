@@ -1,12 +1,13 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import { useParams } from "react-router-dom";
 import { useState } from "react";
-// import { BsMic } from "-icons/bs";
+import { BsMic } from "react-icons/bs";
 
 import {
 	Button,
 	Center,
 	Input,
+	Icon,
 	Modal,
 	ModalBody,
 	ModalCloseButton,
@@ -20,6 +21,10 @@ import {
 	FormControl,
 	FormLabel,
 	useToast,
+	Text,
+	Alert,
+	AlertIcon,
+	Box,
 } from "@chakra-ui/react";
 
 export const NewNoteForm = ({ handleNewNote }) => {
@@ -57,7 +62,7 @@ export const NewNoteForm = ({ handleNewNote }) => {
 
 			const result = await response.json();
 
-      handleNewNote(result.payload);
+			handleNewNote(result.payload);
 			toast({
 				title: "Note added.",
 				description: "Your note has been added.",
@@ -98,8 +103,14 @@ export const NewNoteForm = ({ handleNewNote }) => {
 			<Modal isOpen={isOpen} onClose={onClose}>
 				<ModalOverlay />
 				<ModalContent>
-					<ModalHeader>Add New Note</ModalHeader>
-					{/* <ModalHeader>Hint: Use your phone's mic to dictate notes quickly!</ModalHeader> */}
+					<ModalHeader pb={4}>Add New Note</ModalHeader>
+					<Alert mb={4} status="info" textAlign={"center"} fontSize={"small"}>
+						<AlertIcon m={'auto'} />
+						<Box w={'100%'}>
+							Using a mobile device? <br />
+							Use your microphone (<Icon as={BsMic} display={'inline'} />) to dictate notes fast!
+						</Box>
+					</Alert>
 					<ModalCloseButton />
 					<ModalBody>
 						<Stack spacing={3}>
@@ -135,7 +146,7 @@ export const NewNoteForm = ({ handleNewNote }) => {
 								onClose();
 							}}
 						>
-							Post
+							Create Note
 						</Button>
 					</ModalFooter>
 				</ModalContent>
