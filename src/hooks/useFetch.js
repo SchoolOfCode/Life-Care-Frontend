@@ -31,7 +31,7 @@ const useFetch = (url) => {
 		fetchData();
 	}, [getAccessTokenSilently, url]);
 
-	return { data, isPending, error };
+	return { data, isPending, error, setData };
 };
 
 export default useFetch;
