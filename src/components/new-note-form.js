@@ -24,6 +24,8 @@ import {
 	Alert,
 	AlertIcon,
 	Box,
+	FormHelperText,
+	FormErrorMessage,
 } from "@chakra-ui/react";
 
 export const NewNoteForm = ({ handleNewNote }) => {
@@ -33,11 +35,15 @@ export const NewNoteForm = ({ handleNewNote }) => {
 	const { getAccessTokenSilently } = useAuth0();
 	const toast = useToast();
 
-	const [overviewValue, setOverview] = useState("");
-	const [incidentValue, setIncident] = useState("No incident or concerns");
-	const [additionalValue, setAdditional] = useState("No additional information ");
+	const [overviewValue, setOverviewValue] = useState("");
+	const [incidentValue, setIncidentValue] = useState("No incident or concerns");
+	const [additionalValue, setAdditionalValue] = useState("No additional information ");
 	const [showIncident, setShowIncident] = useState(false);
-	const [showAdditional, setAdditionalInfo] = useState(false);
+	const [showAdditional, setShowAdditional] = useState(false);
+
+	const isOverviewError = overviewValue === "";
+	const isIncidentError = incidentValue === "";
+	const isAdditionalError = additionalValue === "";
 
 	async function handleClick() {
 		try {
@@ -84,11 +90,13 @@ export const NewNoteForm = ({ handleNewNote }) => {
 	// function for incidents & concerns
 	const handleToggle = (event) => {
 		setShowIncident(event.target.checked);
+		setIncidentValue("");
 	};
 
 	// function for additional information
 	const handleAdditonalToggle = (event) => {
-		setAdditionalInfo(event.target.checked);
+		setShowAdditional(event.target.checked);
+		setAdditionalValue("");
 	};
 
 	return (
@@ -104,32 +112,52 @@ export const NewNoteForm = ({ handleNewNote }) => {
 				<ModalContent>
 					<ModalHeader pb={4}>Add New Note</ModalHeader>
 					<Alert mb={4} status="info" textAlign={"center"} fontSize={"small"}>
-						<AlertIcon m={'auto'} />
-						<Box w={'100%'}>
+						<AlertIcon m={"auto"} />
+						<Box w={"100%"}>
 							Using a mobile device? <br />
-							Use your microphone (<Icon as={BsMic} display={'inline'} />) to dictate notes fast!
+							Use your microphone (<Icon as={BsMic} display={"inline"} />) to dictate notes fast!
 						</Box>
 					</Alert>
 					<ModalCloseButton />
 					<ModalBody>
 						<Stack spacing={3}>
-							<Input placeholder="Overview" size="md" onChange={(event) => setOverview(event.target.value)} />
+							{/* Overview Input */}
+							<FormControl isRequired isInvalid={isOverviewError}>
+								<FormLabel htmlFor="Overview">Overview</FormLabel>
+
+								<Input value={overviewValue} placeholder="Enter a message" size="md" onChange={(event) => setOverviewValue(event.target.value)} />
+								{!isOverviewError ? <FormHelperText></FormHelperText> : <FormErrorMessage>This field is required.</FormErrorMessage>}
+							</FormControl>
+
+							{/* Incidents & concerns */}
 							<FormControl display="flex" alignItems="center">
 								<FormLabel htmlFor="Incidents & concerns" mb="0">
 									Any incidents/concerns?
 								</FormLabel>
 								<Switch id="incident_concern" checked={showIncident} onChange={handleToggle} colorScheme="teal" />
 							</FormControl>
-							{showIncident && <Input placeholder="Incidents/Concerns" size="md" onChange={(event) => setIncident(event.target.value)} />}
+
+							{showIncident && (
+								<FormControl isRequired isInvalid={isIncidentError}>
+									<Input value={incidentValue} placeholder="Enter a message" size="md" onChange={(event) => setIncidentValue(event.target.value)} />
+									{!isIncidentError ? <FormHelperText></FormHelperText> : <FormErrorMessage>This field is required.</FormErrorMessage>}
+								</FormControl>
+							)}
+
+							{/* Additional information */}
 							<FormControl display="flex" alignItems="center">
 								<FormLabel htmlFor="Additional information" mb="0">
 									Any additional information?
 								</FormLabel>
 								<Switch id="additional_info" checked={showAdditional} onChange={handleAdditonalToggle} colorScheme="teal"></Switch>
 							</FormControl>
-							{showAdditional && <Input placeholder="Additional Information" size="md" onChange={(event) => setAdditional(event.target.value)} />}
 
-							{/* needs sanitizing? */}
+							{showAdditional && (
+								<FormControl isRequired isInvalid={isAdditionalError}>
+									<Input value={additionalValue} placeholder="Enter a message" size="md" onChange={(event) => setAdditionalValue(event.target.value)} />
+									{!isAdditionalError ? <FormHelperText></FormHelperText> : <FormErrorMessage>This field is required.</FormErrorMessage>}
+								</FormControl>
+							)}
 						</Stack>
 					</ModalBody>
 
@@ -137,16 +165,23 @@ export const NewNoteForm = ({ handleNewNote }) => {
 						<Button mr="10px" colorScheme="teal" variant="outline" onClick={onClose}>
 							Close
 						</Button>
-						<Button
-							colorScheme="teal"
-							mr={3}
-							onClick={() => {
-								handleClick();
-								onClose();
-							}}
-						>
-							Create Note
-						</Button>
+
+						{isOverviewError || isIncidentError || isAdditionalError ? (
+							<Button mr={3} disabled={true} style={{ cursor: "not-allowed" }}>
+								Create Note
+							</Button>
+						) : (
+							<Button
+								colorScheme="teal"
+								mr={3}
+								onClick={() => {
+									handleClick();
+									onClose();
+								}}
+							>
+								Create Note
+							</Button>
+						)}
 					</ModalFooter>
 				</ModalContent>
 			</Modal>
