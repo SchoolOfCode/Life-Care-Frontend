@@ -21,10 +21,10 @@ export const HamburgerMenu = () => {
 						<MenuItem>Dashboard</MenuItem>
 					</Link>
 					<Link as={ReactRouterLink} to="#" style={{ textDecoration: "none" }}>
-						<MenuItem>Shifts</MenuItem>
+						<MenuItem>Shifts - coming soon!</MenuItem>
 					</Link>
 					<Link as={ReactRouterLink} to="#" style={{ textDecoration: "none" }}>
-						<MenuItem>Admin</MenuItem>
+						<MenuItem>Admin - coming soon!</MenuItem>
 					</Link>
 					<MenuItem as={Button} onClick={handleLogout} style={{ fontWeight: "400", justifyContent: "left" }}>
 						Logout
