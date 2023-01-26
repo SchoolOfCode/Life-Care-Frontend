@@ -15,10 +15,14 @@ export const Notes = () => {
 
 
   function handleNewNote(newNote) {
+    // console.log(user);
     const [firstName, lastName] = user.name.split(" ");
+    // console.log(firstName, lastName)
+
     const note = {
       ...newNote, first_name: firstName, last_name: lastName
     }
+    // console.log(note)
     setData([note, ...notes]);
   }
 
