@@ -1,14 +1,14 @@
 Cypress.Commands.add(
-  "loginByAuth0Api",
-  (username: string, password: string) => {
+  "loginByAuth0Api" )
+   {
     cy.log(`Logging in as ${username}`);
-    const client_id = Cypress.env("REACT_APP_AUTH0_CLIENT_ID");
-    const client_secret = Cypress.env("REACT_APP_AUTH0_CLIENT_SECRET");
-    const audience = Cypress.env("REACT_APP_AUTH0_AUDIENCE");
+    const client_id = Cypress.env('auth0_client_id');
+    const client_secret = Cypress.env('auth0_client_secret');
+    const audience = Cypress.env('auth0_audience');
 
     cy.request({
       method: "POST",
-      url: `https://${Cypress.env("REACT_APP_AUTH0_DOMAIN")}/oauth/token`,
+      url: `https://${Cypress.env('auth0_domain')}/oauth/token`,
       body: {
         grant_type: "password",
         username,
@@ -55,5 +55,4 @@ Cypress.Commands.add(
 
       cy.visit("/");
     });
-  }
-);
+  };
