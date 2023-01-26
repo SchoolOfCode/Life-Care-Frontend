@@ -41,8 +41,8 @@ export const Note = ({ note, error }) => {
                 <Heading size="md">{`${note.first_name} ${note.last_name}`}</Heading>
                 <Spacer />
                 <Flex direction="column">
-                  <Box>{time}</Box>
-                  <Box>{date}</Box>
+                  <Box textAlign="right">{time}</Box>
+                  <Box textAlign="right">{date}</Box>
                 </Flex>
               </Flex>
             </CardHeader>
