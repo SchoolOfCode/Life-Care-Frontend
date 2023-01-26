@@ -14,9 +14,16 @@ import {
   Spacer,
 } from "@chakra-ui/react";
 
-export const Note = ({ content, error }) => {
-  let date = new Date(content.time_stamp).toLocaleDateString();
-  let time = new Date(content.time_stamp).toLocaleTimeString();
+export const Note = ({ note, error }) => {
+  let date = new Date(note.time_stamp).toLocaleDateString("en-GB", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  });
+  let time = new Date(note.time_stamp).toLocaleTimeString("en-GB", {
+    hour: "2-digit",
+    minute: "2-digit",
+  });
 
   return (
     <>
@@ -26,13 +33,12 @@ export const Note = ({ content, error }) => {
           {error}
         </Alert>
       )}
-
-      {content && (
+      {note && (
         <>
           <Card mt="20px">
             <CardHeader>
               <Flex>
-                <Heading size="md">{`${content.first_name} ${content.last_name}`}</Heading>
+                <Heading size="md">{`${note.first_name} ${note.last_name}`}</Heading>
                 <Spacer />
                 <Flex direction="column">
                   <Box>{time}</Box>
@@ -51,7 +57,7 @@ export const Note = ({ content, error }) => {
                     <AccordionIcon />
                   </AccordionButton>
                 </h2>
-                <AccordionPanel pb={4}>{content.content}</AccordionPanel>
+                <AccordionPanel pb={4}>{note.overview}</AccordionPanel>
               </AccordionItem>
 
               <AccordionItem>
@@ -63,7 +69,7 @@ export const Note = ({ content, error }) => {
                     <AccordionIcon />
                   </AccordionButton>
                 </h2>
-                <AccordionPanel pb={4}>{content.incidents}</AccordionPanel>
+                <AccordionPanel pb={4}>{note.incidents}</AccordionPanel>
               </AccordionItem>
               <AccordionItem>
                 <h2>
@@ -74,7 +80,7 @@ export const Note = ({ content, error }) => {
                     <AccordionIcon />
                   </AccordionButton>
                 </h2>
-                <AccordionPanel pb={4}>{content.additional}</AccordionPanel>
+                <AccordionPanel pb={4}>{note.additional}</AccordionPanel>
               </AccordionItem>
             </Accordion>
           </Card>
