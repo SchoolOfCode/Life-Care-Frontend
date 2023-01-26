@@ -27,4 +27,4 @@ We realised that carers in the healthcare industry often struggle with outdated 
 
 # Deployment
 
-- This portfolio is hosted on Render
+- This app is deployed using Render
