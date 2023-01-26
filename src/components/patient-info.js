@@ -19,7 +19,6 @@ export const PatientInfo = () => {
 	const { data: patient, error } = useFetch(`${process.env.REACT_APP_API_SERVER_URL}/api/patients/${id}`);
 
   let dob = new Date(patient?.dob).toLocaleDateString();
-  console.log(typeof patient?.dob);
 
   return (
     <>

@@ -1,6 +1,8 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import { useParams } from "react-router-dom";
-import React, { useState } from "react";
+import { useState } from "react";
+// import { BsMic } from "-icons/bs";
+
 import {
 	Button,
 	Center,
@@ -20,7 +22,7 @@ import {
 	useToast,
 } from "@chakra-ui/react";
 
-export const NewNoteForm = () => {
+export const NewNoteForm = ({ handleNewNote }) => {
 	const { isOpen, onOpen, onClose } = useDisclosure();
 	const { user } = useAuth0();
 	const { id } = useParams();
@@ -55,8 +57,7 @@ export const NewNoteForm = () => {
 
 			const result = await response.json();
 
-
-			console.log(result);
+      handleNewNote(result.payload);
 			toast({
 				title: "Note added.",
 				description: "Your note has been added.",
@@ -98,6 +99,7 @@ export const NewNoteForm = () => {
 				<ModalOverlay />
 				<ModalContent>
 					<ModalHeader>Add New Note</ModalHeader>
+					{/* <ModalHeader>Hint: Use your phone's mic to dictate notes quickly!</ModalHeader> */}
 					<ModalCloseButton />
 					<ModalBody>
 						<Stack spacing={3}>
