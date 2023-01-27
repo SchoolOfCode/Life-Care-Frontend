@@ -21,6 +21,7 @@ export const HamburgerMenu = () => {
     });
   };
 
+
   return (
     <Flex display={["flex", "flex", "none", "none"]}>
       <Menu>
@@ -63,4 +64,5 @@ export const HamburgerMenu = () => {
       </Menu>
     </Flex>
   );
+
 };
