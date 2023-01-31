@@ -44,13 +44,13 @@ export const NewNoteForm = ({ handleNewNote }) => {
 	const isIncidentError = incidentValue === "";
 	const isAdditionalError = additionalValue === "";
 
-	console.log(`isOverviewError: ${isOverviewError}`);
-	console.log(`isIncidentError: ${isIncidentError}`);
-	console.log(`isAdditionalError: ${isAdditionalError}`);
-	console.log(`overviewValue: ${overviewValue}`);
-	console.log(`incidentValue: ${incidentValue}`);
-	console.log(`additionalValue: ${additionalValue}`);
-	console.log(`------------------------`);
+	// console.log(`isOverviewError: ${isOverviewError}`);
+	// console.log(`isIncidentError: ${isIncidentError}`);
+	// console.log(`isAdditionalError: ${isAdditionalError}`);
+	// console.log(`overviewValue: ${overviewValue}`);
+	// console.log(`incidentValue: ${incidentValue}`);
+	// console.log(`additionalValue: ${additionalValue}`);
+	// console.log(`------------------------`);
 
 	async function handleClick() {
 		try {
@@ -97,8 +97,10 @@ export const NewNoteForm = ({ handleNewNote }) => {
 	// function for incidents & concerns
 	const handleToggle = (event) => {
 		setShowIncident(event.target.checked);
+		console.log(`event.target.checked: ${event.target.checked}`);
 		showIncident ? setIncidentValue("No incident or concerns") : setIncidentValue("");
 	};
+	console.log(`showIncident: ${showIncident}`);
 
 	// function for additional information
 	const handleAdditonalToggle = (event) => {
