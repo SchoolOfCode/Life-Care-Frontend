@@ -47,7 +47,7 @@ insert into carers (avatar, first_name, last_name, number, email) values ('https
 
 insert into carers (avatar, first_name, last_name, number, email) values ('https://i.imgur.com/IyOqe4z.jpg', 'Nikolos', 'Coady', '474 919 7121', 'ncoady1@netlog.com');
 
-insert into carers (avatar, first_name, last_name, number, email) values ('https://i.imgur.com/iLkdMka.jpg', 'Anastassia', 'Beavington', '224 149 8341', 'abeavington2@oaic.gov.au');
+insert into carers (avatar, first_name, last_name, number, email) values ('https://i.imgur.com/TLXNWH3.jpg', 'Anastassia', 'Beavington', '224 149 8341', 'abeavington2@oaic.gov.au');
 
 
 -- patients insert

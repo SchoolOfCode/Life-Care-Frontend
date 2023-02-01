@@ -30,9 +30,8 @@ import {
 
 export const NewNoteForm = ({ handleNewNote }) => {
 	const { isOpen, onOpen, onClose } = useDisclosure();
-	const { user } = useAuth0();
+	const { user, getAccessTokenSilently } = useAuth0();
 	const { id } = useParams();
-	const { getAccessTokenSilently } = useAuth0();
 	const toast = useToast();
 
 	const [overviewValue, setOverviewValue] = useState("");
@@ -44,6 +43,14 @@ export const NewNoteForm = ({ handleNewNote }) => {
 	const isOverviewError = overviewValue === "";
 	const isIncidentError = incidentValue === "";
 	const isAdditionalError = additionalValue === "";
+
+	// console.log(`isOverviewError: ${isOverviewError}`);
+	// console.log(`isIncidentError: ${isIncidentError}`);
+	// console.log(`isAdditionalError: ${isAdditionalError}`);
+	// console.log(`overviewValue: ${overviewValue}`);
+	// console.log(`incidentValue: ${incidentValue}`);
+	// console.log(`additionalValue: ${additionalValue}`);
+	// console.log(`------------------------`);
 
 	async function handleClick() {
 		try {
@@ -90,13 +97,15 @@ export const NewNoteForm = ({ handleNewNote }) => {
 	// function for incidents & concerns
 	const handleToggle = (event) => {
 		setShowIncident(event.target.checked);
-		setIncidentValue("");
+		console.log(`event.target.checked: ${event.target.checked}`);
+		showIncident ? setIncidentValue("No incident or concerns") : setIncidentValue("");
 	};
+	console.log(`showIncident: ${showIncident}`);
 
 	// function for additional information
 	const handleAdditonalToggle = (event) => {
 		setShowAdditional(event.target.checked);
-		setAdditionalValue("");
+		showAdditional ? setAdditionalValue("No additional information") : setAdditionalValue("");
 	};
 
 	return (
