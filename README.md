@@ -4,6 +4,14 @@ We realised that carers in the healthcare industry often struggle with outdated 
 
 ## Deployed Here: [lifecare.ondernder.com](https://life-care.onrender.com/)
 
+### ℹ️ Use the following Login Credentials:
+
+username: seana.s@lifecare.com  
+password: lifecaretestuser123!
+
+username: anastassia.b@lifecare.com  
+password: lifecaretestuser123!
+
 # Tech Stack
 
 - This application was designed and built using React, a popular JavaScript library for building user interfaces.
